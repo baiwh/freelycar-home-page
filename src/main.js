@@ -4,7 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import navigation from './../src/components/nav.vue'
+import bottomNav from './../src/components/navFotter.vue'
+
 Vue.component('navigation', navigation)
+Vue.component('bottomNav', bottomNav)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

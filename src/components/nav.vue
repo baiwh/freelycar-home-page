@@ -51,7 +51,6 @@
       }
     },
     mounted: function () {
-
     }
   }
 </script>
