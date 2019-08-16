@@ -5,7 +5,9 @@
       <button
         :class="[msg===item.value?'yellow':'white']"
         @click="chooseNavTab(item.value)"
-        v-for="(item,index) in list">{{item.value}}</button>
+        v-for="(item,index) in list">
+        {{item.value}}
+      </button>
       <router-link to="/application">
         <button class="apply">申请合作</button>
       </router-link>
@@ -57,8 +59,8 @@
 
 <style scoped lang="less">
   .nav{
-    width: 96.4rem;
-    height: 11.6rem;
+    width: 1240px;
+    height: 70px;
     border-bottom: 1px solid #7AC8F5;
     transform: translateX(-50%);
     position: absolute;
@@ -68,22 +70,21 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 1.5rem;
     img{
-      height: 3rem;
-      width: 21.6rem;
+      height: 30px;
+      width: 206px;
     }
     button{
-      margin-left: 6.5rem;
+      font-size: 14px;
+      margin-left: 78px;
       background: transparent;
       border: transparent;
-      font-weight: 700;
     }
     .apply{
       background: #FFBD02;
       color: white;
-      padding:1rem 1.6rem;
-      border-radius: 10px;
+      padding:5px 10px;
+      border-radius: 5px;
     }
   }
   .yellow{
