@@ -4,6 +4,7 @@
     <div class="head">
       <div>
         <img src="./../assets/bg1.png" alt="">
+        <button>了解小易</button>
       </div>
 
     </div>
@@ -94,6 +95,17 @@
       transform: translateX(-50%);
       left: 50%;
       height: 653px;
+    }
+    button{
+      background: #FFBD02;
+      font-size: 18px;
+      color: white;
+      border: transparent;
+      padding: 10px 25px;
+      border-radius: 7px;
+      top: 380px;
+      left: 420px;
+      position: absolute;
     }
   }
 

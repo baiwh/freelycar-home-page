@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="about-us">
+    <img class="head" src="./../assets/bg-car.png" alt="">
 
-    <div class="about-us title">
+    <div class="company title">
       <h5>About Us</h5>
       <h1>公司简介</h1>
       <b></b>
@@ -14,19 +15,22 @@
       <h5>History Of Enterprise</h5>
       <h1>企业发展历程</h1>
       <b></b>
-      <img src="./../assets/timeLine.png" alt="">
+      <img class="time-line" src="./../assets/timeLine.png" alt="">
     </div>
 
     <div class="title">
       <h5>Letters Patent</h5>
       <h1>专利证书</h1>
       <b></b>
-      <div>
+      <div class="zhuanli">
         <img src="./../assets/guapai@2x.png" alt="">
         <img src="./../assets/zhuanli@2x.png" alt="">
       </div>
-      <img src="./../assets/01@2x.png" alt="">
-      <div>
+      <div class="zhengshu">
+        <img v-for="(item,index) in msg"
+             :src="['/static/zhengshu/'+item+'.jpg']" alt="">
+      </div>
+      <div class="shicha">
         <div>
           <img src="./../assets/lingdao1@2x.png" alt="">
           <span>国务院一处张处长视察</span>
@@ -50,21 +54,85 @@
     name: 'aboutUs',
     data() {
       return {
-        msg: ''
+        msg: ['01','02','03','04','05','06','07','08',
+          '09','10','11','12','13','14']
       }
     }
   }
 </script>
 
 <style scoped lang="less">
+
   .about-us{
-    padding-top: 96px;
     border-bottom: 1px solid #dcdcdc;
-    width: 1000px;
+    width: 1240px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transform: translateX(-50%);
+    position: relative;
+    left: 50%;
+    .head {
+      height: 464px;
+      width: 99vw;
+    }
+    > div {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding: 100px 0 75px 0;
+      border-bottom: 1px solid #dcdcdc;
+    }
     p{
       font-size: 16px;
+      line-height: 30px;
+      text-align: center;
+      margin: 0 150px;
     }
-
   }
 
+  .time-line{
+    width: 1224px;
+    height: 325px;
+    margin: 30px 0;
+  }
+
+  .zhuanli{
+    img{
+      height: 242px;
+      width: 170px;
+      margin: 0 100px;
+    }
+  }
+  .zhengshu{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 96px 0;
+    img{
+      height: 215px;
+      width: 160px;
+    }
+  }
+  .shicha{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 170px;
+    margin: 30px 0;
+    justify-content: space-between;
+    img{
+      width: 264px;
+      height: 178px;
+      margin-bottom: 30px;
+    }
+    div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 </style>
