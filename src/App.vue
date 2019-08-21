@@ -22,6 +22,15 @@ body,div,span,h1,h2,h3,h4,h5,h6,img{
   padding: 0;
   font-weight: 500;
 }
+input:focus{
+  outline: none;
+}
+button:focus{
+  outline: none;
+}
+button{
+  cursor: pointer;
+}
 html{
   font-size: 13px;
 }

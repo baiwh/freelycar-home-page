@@ -106,13 +106,13 @@
       font-size: 14px;
       line-height: 30px;
       color: #818181;
-      margin-bottom: 173px;
+      margin-bottom: 140px;
       padding: 0 130px;
     }
     h2{
       color: #82D2F0;
       font-size: 28px;
-      margin: 169px 0 105px 0;
+      margin: 130px 0 80px 0;
     }
   }
   .model-img{
@@ -120,8 +120,8 @@
     width: 100%;
     margin-bottom: 110px;
     img{
-      height: 619px;
-      width: 692px;
+      height: 570px;
+      width: 650px;
     }
     h6{
       font-size: 18px;
@@ -151,43 +151,40 @@
   }
   .time-line{
     width: 380px;
-    height: 550px;
+    height: 450px;
     padding-left: 160px;
     position: relative;
     :nth-child(5),:nth-last-child(1),:nth-last-child(2){
-      margin-top: 40px;
+      margin-top: 30px;
     }
     img{
-      height: 40px;
-      width: 40px;
+      height: 30px;
+      width: 30px;
       position: absolute;
-      left: -22px;
-      top: -10px;
+      left: -17px;
+      top: -8px;
     }
     span{
-      font-size: 24px;
+      font-size: 20px;
       color: #66D4F4;
     }
     h3{
-      font-size: 24px;
+      font-size: 18px;
       width: 300px;
     }
     p{
-      font-size: 16px;
+      font-size: 14px;
       color: #7C7C7C;
       width: 300px;
     }
     .year{
       position: absolute;
-      left: -125px;
-      top: -9px;
+      left: -100px;
+      top: -7px;
     }
     .big{
-      font-size: 55px;
+      font-size: 35px;
       margin: 0 10px;
-      & {
-
-      }
     }
   }
 </style>
