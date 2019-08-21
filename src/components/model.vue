@@ -38,14 +38,16 @@
       <h5>Cooperation & Strategic Planning</h5>
       <h1>战略合作规划</h1>
       <b></b>
-      <div class="time-line" v-for="(item,index) in msg">
-        <span>{{item.year}}</span>
+      <div :class="[item.year==='2020'?'time-line border-dotted':'time-line border-solid']"
+           v-for="(item,index) in msg">
+        <img src="./../assets/blue-circle.png" alt="">
+        <span class="year">{{item.year}}年</span>
         <h3>发展策略</h3>
         <p>{{item.title1}}</p>
         <h3>业务拓展</h3>
         <p v-for="(items,indexs) in item.title2">{{items}}</p>
-        <h3>用户数量<span>{{item.user}}</span></h3>
-        <h3>智能钥匙柜<span>{{item.ark}}</span></h3>
+        <h3>用户数量<span class="big">{{item.user}}</span>万</h3>
+        <h3>智能钥匙柜<span class="big">{{item.ark}}</span>台</h3>
       </div>
     </div>
   </div>
@@ -84,7 +86,6 @@
 
 <style scoped lang="less">
   .model{
-    border-bottom: 1px solid #dcdcdc;
     width: 1240px;
     display: flex;
     align-items: center;
@@ -142,7 +143,51 @@
       top: 400px;
     }
   }
+  .border-solid{
+    border-left: 4px solid #66D4F4;
+  }
+  .border-dotted{
+    border-left: 4px dotted #66D4F4;
+  }
   .time-line{
+    width: 380px;
+    height: 550px;
+    padding-left: 160px;
+    position: relative;
+    :nth-child(5),:nth-last-child(1),:nth-last-child(2){
+      margin-top: 40px;
+    }
+    img{
+      height: 40px;
+      width: 40px;
+      position: absolute;
+      left: -22px;
+      top: -10px;
+    }
+    span{
+      font-size: 24px;
+      color: #66D4F4;
+    }
+    h3{
+      font-size: 24px;
+      width: 300px;
+    }
+    p{
+      font-size: 16px;
+      color: #7C7C7C;
+      width: 300px;
+    }
+    .year{
+      position: absolute;
+      left: -125px;
+      top: -9px;
+    }
+    .big{
+      font-size: 55px;
+      margin: 0 10px;
+      & {
 
+      }
+    }
   }
 </style>
