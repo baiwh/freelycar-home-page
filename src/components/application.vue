@@ -7,7 +7,9 @@
       <h1>联系我们</h1>
       <b></b>
       <div class="map">
-        <div>ditu</div>
+        <div>
+          <div id="container">ditu</div>
+        </div>
         <h3>南京小易信息科技有限公司</h3>
         <h6>地址：南京市玄武区苏宁青创园C栋3层</h6>
         <h6>邮箱：info@freelycar.com</h6>
@@ -20,13 +22,14 @@
       <hr>
       <input placeholder="姓名" type="text" v-model="name">
       <input placeholder="联系方式" type="text" v-model="phone">
-      <input placeholder="区域" type="text" v-model="where">
-      <button>免费咨询</button>
+      <input placeholder="区域" type="text" v-model="city">
+      <button @click="submit">免费咨询</button>
     </div>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     name: 'application',
     data() {
@@ -34,13 +37,47 @@
         msg: '',
         name:'',
         phone:'',
-        where:''
+        city:''
       }
+    },
+    methods:{
+      baiduMap(){
+        var map = new BMap.Map("container");
+        var point = new BMap.Point(118.897319,32.096467);
+        map.centerAndZoom(point, 15);
+        var marker = new BMap.Marker(point);        // 创建标注
+        map.addOverlay(marker);
+        map.addControl(new BMap.NavigationControl());
+        map.addControl(new BMap.ScaleControl());
+        map.addControl(new BMap.OverviewMapControl());
+        map.addControl(new BMap.MapTypeControl());
+      },
+      submit(){
+        axios.post('https://www.freelycar.com/api/webapi/saveInfo',
+          {
+            name:this.name,
+            phone:this.phone,
+            city:this.city
+          }).then(response => {
+            if (response.data.code === 1 || response.data.status === 0) {
+              if (response.data.result) {} else {}
+            } else {
+              if (response.data.message) {} else {}
+            }
+          }, err => {})
+      }
+    },
+    mounted(){
+      this.baiduMap()
     }
   }
 </script>
 
 <style scoped lang="less">
+  #container{
+    height: 100%;
+    width: 100%;
+  }
   .application {
     width: 1240px;
     display: flex;
