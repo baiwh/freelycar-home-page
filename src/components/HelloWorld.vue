@@ -4,7 +4,9 @@
     <div class="head">
       <div>
         <img src="./../assets/bg1.png" alt="">
-        <button>了解小易</button>
+        <router-link to="/aboutUs">
+          <button>了解小易</button>
+        </router-link>
       </div>
 
     </div>
@@ -58,7 +60,10 @@
       <h5>Cooperation</h5>
       <h1>合作伙伴</h1>
       <b></b>
-      <img src="./../assets/other-logo.png" alt="">
+      <div>
+        <img v-for="(item,index) in msg"
+             :src="['/static/friendlinks/'+item+'.png']" alt="">
+      </div>
     </div>
 
   </div>
@@ -69,7 +74,8 @@
     name: 'HelloWorld',
     data() {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        msg: ['suning','beijing','youzheng','zijin',
+          'pingan','picc','jinao','weizhen']
       }
     }
   }
@@ -233,10 +239,16 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    img {
-      height: 40px;
-      width: 1000px;
+    div {
+      height: 60px;
+      width: 1240px;
       margin-top: 90px;
+      display: flex;
+      justify-content: space-around;
+      img{
+        height: 40px;
+        width: 90px;
+      }
     }
   }
 

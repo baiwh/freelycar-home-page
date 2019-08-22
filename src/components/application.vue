@@ -12,6 +12,7 @@
         </div>
         <h3>南京小易信息科技有限公司</h3>
         <h6>地址：南京市玄武区苏宁青创园C栋3层</h6>
+        <h6>电话：025-86697165</h6>
         <h6>邮箱：info@freelycar.com</h6>
       </div>
     </div>
@@ -42,16 +43,28 @@
     },
     methods:{
       baiduMap(){
+        // 初始化及坐标
         var map = new BMap.Map("container");
         var point = new BMap.Point(118.897319,32.096467);
         map.centerAndZoom(point, 15);
-        var marker = new BMap.Marker(point);        // 创建标注
-        map.addOverlay(marker);
+        // 控件
         map.addControl(new BMap.NavigationControl());
         map.addControl(new BMap.ScaleControl());
         map.addControl(new BMap.OverviewMapControl());
         map.addControl(new BMap.MapTypeControl());
+        // 创建标注
+        var marker = new BMap.Marker(point);
+        map.addOverlay(marker);
+        // 窗口标注
+        var opts = {
+          width : 200,     // 信息窗口宽度
+          height: 50,     // 信息窗口高度
+          title : '<h3 style="color:#BC724B">南京小易信息科技有限公司</h3>'  // 信息窗口标题
+        }
+        var infoWindow = new BMap.InfoWindow("南京市玄武区苏宁青创园C栋3层<br/>025-86697165", opts);  // 创建信息窗口对象
+        map.openInfoWindow(infoWindow, map.getCenter());      // 打开信息窗口
       },
+
       submit(){
         axios.post('https://www.freelycar.com/api/webapi/saveInfo',
           {
