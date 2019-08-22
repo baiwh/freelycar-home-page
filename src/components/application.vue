@@ -38,7 +38,7 @@
         msg: '',
         name:'',
         phone:'',
-        city:''
+        city:'',
       }
     },
     methods:{
@@ -66,18 +66,22 @@
       },
 
       submit(){
-        axios.post('https://www.freelycar.com/api/webapi/saveInfo',
-          {
-            name:this.name,
-            phone:this.phone,
-            city:this.city
-          }).then(response => {
-            if (response.data.code === 1 || response.data.status === 0) {
-              if (response.data.result) {} else {}
+        if(this.name&&this.phone&&this.city){
+          axios.post('https://www.freelycar.com/api/webapi/saveInfo',
+            {
+              name:this.name,
+              phone:this.phone,
+              city:this.city
+            }).then(response => {
+            if (response.data.code === 1) {
+              //成功
             } else {
-              if (response.data.message) {} else {}
+              //失败
             }
           }, err => {})
+        } else {
+          //补全信息
+        }
       }
     },
     mounted(){
