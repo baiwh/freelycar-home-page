@@ -12,23 +12,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
+      name: '首页',
       component: HelloWorld
     },{
       path: '/aboutUs',
-      name: 'aboutUs',
+      name: '关于我们',
       component: aboutUs
     },{
       path: '/ark',
-      name: 'ark',
+      name: '智能服务',
       component: ark
     },{
       path: '/model',
-      name: 'model',
+      name: '商业模式',
       component: model
     },{
       path: '/application',
-      name: 'application',
+      name: '申请合作',
       component: application
     },
   ],

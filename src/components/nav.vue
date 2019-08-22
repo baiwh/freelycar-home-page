@@ -3,7 +3,7 @@
     <img src="./../assets/logo.png" alt="">
     <div>
       <button
-        :class="[msg===item.value?'yellow':'white']"
+        :class="[$route.name===item.value?'yellow':'white']"
         @click="chooseNavTab(item.value)"
         v-for="(item,index) in list">
         {{item.value}}
@@ -20,7 +20,6 @@
     name: 'nav',
     data() {
       return {
-        msg: '首页',
         list:[
           {
             value:'首页',
@@ -44,7 +43,6 @@
     },
     methods: {
       chooseNavTab(v){
-        this.msg = v
         this.list.map(item=>{
           if(item.value===v){
             this.$router.push({path:item.linkTo})
@@ -52,8 +50,6 @@
         })
       }
     },
-    mounted: function () {
-    }
   }
 </script>
 
