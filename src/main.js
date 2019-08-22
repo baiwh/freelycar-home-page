@@ -5,7 +5,8 @@ import App from './App'
 import router from './router'
 import navigation from './../src/components/nav.vue'
 import bottomNav from './../src/components/navFotter.vue'
-
+import { Cascader} from 'element-ui'
+Vue.component(Cascader.name, Cascader)
 Vue.component('navigation', navigation)
 Vue.component('bottomNav', bottomNav)
 

@@ -19,11 +19,16 @@
 
     <div class="center form">
       <h1>递交信息  免费获取项目资料</h1>
-      <h2>目前已有<span>1</span>人免费获取加盟方案</h2>
+      <h2>目前已有<span>{{number}}</span>人免费获取加盟方案</h2>
       <hr>
       <input placeholder="姓名" type="text" v-model="name">
       <input placeholder="联系方式" type="text" v-model="phone">
-      <input placeholder="区域" type="text" v-model="city">
+      <!--<input placeholder="区域" type="text" v-model="city">-->
+      <el-cascader
+        :options="options"
+        v-model="selectedOptions"
+        @change="handleChange"
+      ></el-cascader>
       <button @click="submit">免费咨询</button>
     </div>
   </div>
@@ -31,6 +36,7 @@
 
 <script>
   import axios from 'axios'
+  import citys from './../components/citys.json'
   export default {
     name: 'application',
     data() {
@@ -39,9 +45,13 @@
         name:'',
         phone:'',
         city:'',
+        selectedOptions:'',
+        number:null,
+        options:citys
       }
     },
     methods:{
+      // 地图
       baiduMap(){
         // 初始化及坐标
         var map = new BMap.Map("container");
@@ -65,6 +75,34 @@
         map.openInfoWindow(infoWindow, map.getCenter());      // 打开信息窗口
       },
 
+      // 选择城市
+      handleChange(v) {
+        console.log(v);
+        let city=''
+        // 省
+        citys.map(item=>{
+          if(item.value===v[0]){
+            city = item.label
+            // 市
+            item.children.map(itemChild=>{
+              if(itemChild.value===v[1]){
+                city = city + itemChild.label
+                // 如果有区
+                if(itemChild.children){
+                  itemChild.children.map(i=>{
+                    if(i.value===v[2]){
+                      city = city+i.label
+                    }
+                  })
+                }
+              }
+            })
+          }
+        })
+        this.city=city
+      },
+
+      // 提交
       submit(){
         if(this.name&&this.phone&&this.city){
           axios.post('https://www.freelycar.com/api/webapi/saveInfo',
@@ -82,10 +120,23 @@
         } else {
           //补全信息
         }
+      },
+
+      // 获取登记人数
+      getNumber(){
+        axios.get('https://www.freelycar.com/api/webapi/getCount').then(response => {
+          if (response.data.code === 1) {
+            //成功
+            this.number=response.data.data
+          } else {
+            //失败
+          }
+        }, err => {})
       }
     },
     mounted(){
       this.baiduMap()
+      this.getNumber()
     }
   }
 </script>
@@ -163,7 +214,7 @@
     button{
       height: 65px;
       width: 550px;
-      margin-top: 10px;
+      margin-top: 50px;
       border-radius: 20px;
       border: transparent;
       background: #66D4F4;
