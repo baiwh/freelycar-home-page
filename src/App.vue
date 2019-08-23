@@ -21,6 +21,11 @@ export default {
     width: 550px !important;
     border: transparent !important;
     padding: 0 50px !important;
+    font-size: 18px !important;
+  }
+  .el-cascader{
+    border-radius: 20px;
+    overflow: hidden;
   }
 body,div,span,h1,h2,h3,h4,h5,h6,img{
   box-sizing: border-box;

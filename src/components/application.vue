@@ -37,6 +37,7 @@
 <script>
   import axios from 'axios'
   import citys from './../components/citys.json'
+  import { MessageBox } from 'element-ui'
   export default {
     name: 'application',
     data() {
@@ -112,13 +113,20 @@
               city:this.city
             }).then(response => {
             if (response.data.code === 1) {
+              this.name = ''
+              this.phone = ''
+              this.city = ''
+              this.selectedOptions = ''
               //成功
+              this.number+=1
+              MessageBox.alert('信息提交成功')
             } else {
-              //失败
+              MessageBox.alert('信息提交失败')
             }
           }, err => {})
         } else {
           //补全信息
+          MessageBox.alert('请补全信息')
         }
       },
 
@@ -156,7 +164,6 @@
     left: 50%;
     .head {
       height: 464px;
-      width: 99vw;
     }
   }
   .center{

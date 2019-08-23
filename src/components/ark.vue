@@ -87,7 +87,6 @@
     left: 50%;
     .head {
       height: 464px;
-      width: 99vw;
     }
   }
   .ark-info{

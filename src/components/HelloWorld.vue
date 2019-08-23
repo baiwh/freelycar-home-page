@@ -8,7 +8,6 @@
           <button>了解小易</button>
         </router-link>
       </div>
-
     </div>
 
     <!--开启爱车养护新模式-->
