@@ -40,7 +40,7 @@
         <h4><img src="./../assets/blue-circle.png" alt="">预约服务模式，用户只需按需存取钥匙，大大节省了用户的洗车等待时间</h4>
         <h4><img src="./../assets/blue-circle.png" alt="">极大提升用户的洗车频次，提升服务商家的利益</h4>
         <h4><img src="./../assets/blue-circle.png" alt="">提升停车场物业的服务满意度及形象，增加额外收入</h4>
-        <router-link to="/ark">
+        <router-link to="/service">
           <button>READ MORE</button>
         </router-link>
       </div>
@@ -95,6 +95,7 @@
   .head {
     height: 653px;
     width: 100%;
+    position: relative;
     img{
       position: absolute;
       transform: translateX(-50%);
@@ -109,8 +110,9 @@
       padding: 10px 25px;
       border-radius: 7px;
       top: 380px;
-      left: 420px;
+      left: 50%;
       position: absolute;
+      transform: translateX(-530px);
     }
   }
 

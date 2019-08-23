@@ -8,7 +8,7 @@
         v-for="(item,index) in list">
         {{item.value}}
       </button>
-      <router-link to="/application">
+      <router-link to="/contact">
         <button class="apply">申请合作</button>
       </router-link>
     </div>
@@ -29,10 +29,10 @@
             linkTo:'/aboutUs'
           },{
             value:'智能服务',
-            linkTo:'/ark'
+            linkTo:'/service'
           },{
             value:'商业模式',
-            linkTo:'/model'
+            linkTo:'/business'
           }
 //          ,{
 //            value:'申请合作',

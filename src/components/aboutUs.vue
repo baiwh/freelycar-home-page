@@ -65,7 +65,8 @@
 
   .about-us{
     border-bottom: 1px solid #dcdcdc;
-    width: 1240px;
+    width: 100%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -76,6 +77,7 @@
       height: 464px;
     }
     > div {
+      width: 1240px;
       display: flex;
       align-items: center;
       flex-direction: column;

@@ -86,7 +86,8 @@
 
 <style scoped lang="less">
   .model{
-    width: 1240px;
+    width: 100%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -97,12 +98,14 @@
       height: 464px;
     }
     > div {
+      width: 1240px;
       display: flex;
       align-items: center;
       flex-direction: column;
     }
     .model-info{
       font-size: 14px;
+      width: 1240px;
       line-height: 30px;
       color: #818181;
       margin-bottom: 140px;

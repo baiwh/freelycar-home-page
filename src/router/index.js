@@ -19,15 +19,15 @@ export default new Router({
       name: '关于我们',
       component: aboutUs
     },{
-      path: '/ark',
+      path: '/service',
       name: '智能服务',
       component: ark
     },{
-      path: '/model',
+      path: '/business',
       name: '商业模式',
       component: model
     },{
-      path: '/application',
+      path: '/contact',
       name: '申请合作',
       component: application
     },

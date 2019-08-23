@@ -78,13 +78,15 @@
 
 <style scoped lang="less">
   .ark {
-    width: 1240px;
+    width: 100%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     flex-direction: column;
     transform: translateX(-50%);
     position: relative;
     left: 50%;
+    padding-bottom: 50px;
     .head {
       height: 464px;
     }

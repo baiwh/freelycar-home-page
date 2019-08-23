@@ -27,14 +27,14 @@
             linkTo:'/aboutUs'
           },{
             value:'智能服务',
-            linkTo:'/ark'
+            linkTo:'/service'
           },{
             value:'商业模式',
-            linkTo:'/model'
+            linkTo:'/business'
           }
          ,{
            value:'申请合作',
-           linkTo:'/application'
+           linkTo:'/contact'
          },
         ]
       }

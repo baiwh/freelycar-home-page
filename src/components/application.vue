@@ -155,7 +155,8 @@
     width: 100%;
   }
   .application {
-    width: 1240px;
+    width: 100%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     flex-direction: column;
