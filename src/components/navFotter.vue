@@ -57,12 +57,52 @@
 
   /*手机端css*/
   @media only screen and (max-width: 415px) {
-
+    .footer{
+      height: 53px;
+      width: 320px;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      padding-top: 10px;
+      div{
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        margin: 0 15px;
+      }
+      .call-us{
+        display: none;
+      }
+      .beian span,a{
+        font-size: 10px;
+        color: #D1D1D1;
+      }
+    }
   }
 
   /*手机电脑之间*/
   @media screen and (min-width:415px) and (max-width:1240px) {
-
+    .footer{
+      height: 53px;
+      width: 320px;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      padding-top: 10px;
+      div{
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        margin: 0 15px;
+      }
+      .call-us{
+        display: none;
+      }
+      .beian span,a{
+        font-size: 10px;
+        color: #D1D1D1;
+      }
+    }
   }
 
   /*电脑端*/
