@@ -82,175 +82,206 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-  .home {
-    width: 100%;
-    overflow: hidden;
-    > div {
-      transform: translateX(-50%);
-      position: relative;
-      left: 50%;
+
+
+  /*手机端css*/
+  @media only screen and (max-width: 414px) {
+    .home {
+
+      width: 100%;
+      overflow: hidden;
+      > div {
+        transform: translateX(-50%);
+        position: relative;
+        left: 50%;
+      }
     }
   }
 
-  .head {
-    height: 653px;
-    width: 100%;
-    position: relative;
-    img{
-      position: absolute;
-      transform: translateX(-50%);
-      left: 50%;
+  /*手机电脑之间*/
+  @media only screen and (min-width: 414px) {
+    .home {
+      width: 100%;
+      overflow: hidden;
+      > div {
+        transform: translateX(-50%);
+        position: relative;
+        left: 50%;
+      }
+    }
+  }
+
+  /*电脑端*/
+  @media only screen and (min-width: 1240px) {
+    .home {
+      width: 100%;
+      overflow: hidden;
+      > div {
+        transform: translateX(-50%);
+        position: relative;
+        left: 50%;
+      }
+    }
+
+    .head {
       height: 653px;
-    }
-    button{
-      background: #FFBD02;
-      font-size: 18px;
-      color: white;
-      border: transparent;
-      padding: 10px 25px;
-      border-radius: 7px;
-      top: 380px;
-      left: 50%;
-      position: absolute;
-      transform: translateX(-530px);
-    }
-  }
-
-  .love-car{
-    height: 711px;
-    width: 100%;
-    padding: 93px 0 0 0;
-    position: relative;
-    transform: translateX(-50%);
-    left: 50%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    img{
-      height: 134px;
-      width: 846px;
-      margin-bottom: 23px;
-    }
-    div{
-      width: 930px;
-      display: flex;
-      justify-content: space-between;
-      margin-right: 12px;
-      font-size: 16px;
-      margin-bottom: 83px;
-      span{
-        display: inline-block;
-        width: 160px;
-        text-align: center;
-        color: #494949;
-        font-weight: 600;
-      }
-    }
-    h6{
-      font-size: 14px;
-      color: #7C7C7C;
-      margin-bottom: 17px;
-    }
-  }
-
-  .deep{
-    height: 770px;
-    width: 100%;
-    img{
-      position: absolute;
-      transform: translateX(-50%);
-      left: 50%;
-      height: 770px;
-    }
-    div{
-      position: absolute;
-      top: 122px;
-      left: 50%;
-      h2{
-        color: #C0C1C1;
-        font-size: 14px;
-        margin-bottom: 15px;
-      }
-      h1{
-        color: #494949;
-        font-size: 28px;
-        margin-bottom: 40px;
-      }
-      h3{
-        color: #7C7C7C;
-        font-size: 16px;
-        margin-bottom: 10px;
-      }
-      h5{
-        color: #7C7C7C;
-        font-size: 16px;
-        margin-bottom: 75px;
-      }
-      h4{
-        color: #7C7C7C;
-        font-size: 14px;
-        margin-bottom: 15px;
-        img{
-          width: 18px;
-          height: 18px;
-          position: relative;
-          top: 5px;
-          left: 10px;
-          margin-right: 15px;
-        }
+      width: 100%;
+      position: relative;
+      img{
+        position: absolute;
+        transform: translateX(-50%);
+        left: 50%;
+        height: 653px;
       }
       button{
-        font-size: 16px;
+        background: #FFBD02;
+        font-size: 18px;
         color: white;
-        padding: 10px 20px;
-        margin: 40px 0 0 0;
-        box-shadow: 0 5px 10px #66D4F4;
-        background: #66D4F4;
-        border-radius: 40px;
         border: transparent;
+        padding: 10px 25px;
+        border-radius: 7px;
+        top: 380px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-530px);
       }
     }
-  }
 
-  .process{
-    height: 740px;
-    width: 100%;
-    padding: 90px 0 0 0;
-    position: relative;
-    transform: translateX(-50%);
-    left: 50%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    img{
-      height: 380px;
-      width: 820px;
-    }
-  }
-
-  .friend {
-    height: 600px;
-    width: 100%;
-    padding-top: 90px;
-    position: relative;
-    transform: translateX(-50%);
-    background: url("./../assets/bg2.png");
-    background-size: 100% 100%;
-    left: 50%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    div {
-      height: 60px;
-      width: 1240px;
-      margin-top: 90px;
+    .love-car{
+      height: 711px;
+      width: 100%;
+      padding: 93px 0 0 0;
+      position: relative;
+      transform: translateX(-50%);
+      left: 50%;
       display: flex;
-      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
       img{
-        height: 40px;
-        width: 90px;
+        height: 134px;
+        width: 846px;
+        margin-bottom: 23px;
+      }
+      div{
+        width: 930px;
+        display: flex;
+        justify-content: space-between;
+        margin-right: 12px;
+        font-size: 16px;
+        margin-bottom: 83px;
+        span{
+          display: inline-block;
+          width: 160px;
+          text-align: center;
+          color: #494949;
+          font-weight: 600;
+        }
+      }
+      h6{
+        font-size: 14px;
+        color: #7C7C7C;
+        margin-bottom: 17px;
+      }
+    }
+
+    .deep{
+      height: 770px;
+      width: 100%;
+      img{
+        position: absolute;
+        transform: translateX(-50%);
+        left: 50%;
+        height: 770px;
+      }
+      div{
+        position: absolute;
+        top: 122px;
+        left: 50%;
+        h2{
+          color: #C0C1C1;
+          font-size: 14px;
+          margin-bottom: 15px;
+        }
+        h1{
+          color: #494949;
+          font-size: 28px;
+          margin-bottom: 40px;
+        }
+        h3{
+          color: #7C7C7C;
+          font-size: 16px;
+          margin-bottom: 10px;
+        }
+        h5{
+          color: #7C7C7C;
+          font-size: 16px;
+          margin-bottom: 75px;
+        }
+        h4{
+          color: #7C7C7C;
+          font-size: 14px;
+          margin-bottom: 15px;
+          img{
+            width: 18px;
+            height: 18px;
+            position: relative;
+            top: 5px;
+            left: 10px;
+            margin-right: 15px;
+          }
+        }
+        button{
+          font-size: 16px;
+          color: white;
+          padding: 10px 20px;
+          margin: 40px 0 0 0;
+          box-shadow: 0 5px 10px #66D4F4;
+          background: #66D4F4;
+          border-radius: 40px;
+          border: transparent;
+        }
+      }
+    }
+
+    .process{
+      height: 740px;
+      width: 100%;
+      padding: 90px 0 0 0;
+      position: relative;
+      transform: translateX(-50%);
+      left: 50%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      img{
+        height: 380px;
+        width: 820px;
+      }
+    }
+
+    .friend {
+      height: 600px;
+      width: 100%;
+      padding-top: 90px;
+      position: relative;
+      transform: translateX(-50%);
+      background: url("./../assets/bg2.png");
+      background-size: 100% 100%;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      div {
+        height: 60px;
+        width: 1240px;
+        margin-top: 90px;
+        display: flex;
+        justify-content: space-around;
+        img{
+          height: 40px;
+          width: 90px;
+        }
       }
     }
   }
-
 </style>
