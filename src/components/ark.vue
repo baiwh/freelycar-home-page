@@ -78,217 +78,217 @@
 
 <style scoped lang="less">
   /*手机端css*/
-  @media only screen and (max-width: 414px) {
+  @media only screen and (max-width: 415px) {
 
   }
 
   /*手机电脑之间*/
-  @media only screen and (min-width: 414px) {
+  @media screen and (min-width:415px) and (max-width:1240px) {
 
   }
 
   /*电脑端*/
   @media only screen and (min-width: 1240px) {
-
-  }
-  .ark {
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    transform: translateX(-50%);
-    position: relative;
-    left: 50%;
-    padding-bottom: 50px;
-    .head {
-      height: 464px;
-    }
-  }
-  .ark-info{
-    margin-top: 134px;
-    height: 644px;
-    width: 1040px;
-    padding-left: 400px;
-    position: relative;
-    img{
-      height: 644px;
-      width: 313px;
-      position: absolute;
-      left: 0;
-      top: -30px;
-    }
-    h2{
-      font-size: 28px;
-      color: #82D2F0;
-    }
-    span{
-      font-size: 18px;
-      border: 2px solid #82D2F0;
-      border-radius: 30px;
-      padding: 10px 15px;
-      margin: 62px 0 30px 0;
-      display: inline-block;
-    }
-    h6{
-      font-size: 14px;
-      line-height: 17px;
-      border-left: 3px solid #82D2F0;
-      padding-left: 21px;
-      color: #7C7C7C;
-      margin-bottom: 15px;
-    }
-    b{
-      font-size: 14px;
-      color: #494949;
-      margin-top: 80px;
-      display: inline-block;
-      img{
-        height: 12px;
-        width: 6px;
-        margin-right: 13px;
-        position: relative;
-        top: 0;
+    .ark {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+      padding-bottom: 50px;
+      .head {
+        height: 464px;
       }
     }
-  }
-  .scenes{
-    height: 638px;
-    width: 840px;
-    margin-top: 79px;
-    position: relative;
-    h4{
-      top: 211px;
-      position: relative;
-      font-size: 18px;
-      color: #494949;
-    }
-    h6{
-      top: 240px;
-      position: relative;
-      font-size: 16px;
-      color: #7C7C7C;
-    }
-    img{
-      height: 638px;
-      width: 743px;
-      position: absolute;
-      left: 300px;
-      top: -30px;
-    }
-  }
-  .iphone{
-    height: 490px;
-    width: 1000px;
-    padding-left: 710px;
-    position: relative;
-    padding-top: 20px;
-    img{
-      height: 718px;
-      position: absolute;
-      left: -150px;
-      top: -220px;
-      z-index: -2;
-    }
-    span{
-      font-size: 18px;
-      border: 2px solid #82D2F0;
-      border-radius: 30px;
-      padding: 10px 15px;
-      margin: 0 0 45px 0;
-      display: inline-block;
-    }
-    h3{
-      font-size: 16px;
-      line-height: 17px;
-      border-left: 3px solid #82D2F0;
-      padding-left: 21px;
-      color: #494949;
-      margin-bottom: 23px;
-      font-weight: 600;
-    }
-    pre{
-      color: #7C7C7C;
-      font-size: 14px;
-      line-height: 23px;
-    }
-  }
-  .management{
-    height: 474px;
-    position: relative;
-    margin-top: 60px;
-    width: 840px;
-    padding-top: 88px;
-    img{
-      height: 460px;
-      width: 436px;
-      position: absolute;
-      left: 570px;
-      top: -30px;
-    }
-    h3{
-      font-size: 16px;
-      line-height: 17px;
-      border-left: 3px solid #82D2F0;
-      padding-left: 21px;
-      color: #494949;
-      margin-bottom: 23px;
-      font-weight: 600;
-    }
-    pre{
-      color: #7C7C7C;
-      font-size: 14px;
-      line-height: 23px;
-    }
-  }
-  .process{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    div{
+    .ark-info{
+      margin-top: 134px;
+      height: 644px;
+      width: 1040px;
+      padding-left: 400px;
       position: relative;
       img{
-        height: 525px;
-        width: 783px;
-        position: relative;
-        transform: translateX(-50%);
-        left: 50%;
+        height: 644px;
+        width: 313px;
+        position: absolute;
+        left: 0;
+        top: -30px;
+      }
+      h2{
+        font-size: 28px;
+        color: #82D2F0;
       }
       span{
-        position: absolute;
+        font-size: 18px;
+        border: 2px solid #82D2F0;
+        border-radius: 30px;
+        padding: 10px 15px;
+        margin: 62px 0 30px 0;
+        display: inline-block;
       }
-      :nth-child(2){
-        top: 87px;
-        left: 95px;
+      h6{
+        font-size: 14px;
+        line-height: 17px;
+        border-left: 3px solid #82D2F0;
+        padding-left: 21px;
+        color: #7C7C7C;
+        margin-bottom: 15px;
       }
-      :nth-child(3){
-        top: 87px;
-        left: 380px;
-      }
-      :nth-child(4){
-        top: 157px;
-        left: 532px;
-      }
-      :nth-child(5){
-        top: 302px;
-        left: 209px;
-        width: 150px;
-      }
-      :nth-child(6){
-        top: 302px;
-        left: 466px;
-        width: 150px;
-      }
-      :nth-child(7){
-        top: 385px;
-        left: 86px;
-        width: 150px;
-      }
-      :nth-child(8){
-        top: 520px;
-        left: 322px;
+      b{
+        font-size: 14px;
+        color: #494949;
+        margin-top: 80px;
+        display: inline-block;
+        img{
+          height: 12px;
+          width: 6px;
+          margin-right: 13px;
+          position: relative;
+          top: 0;
+        }
       }
     }
+    .scenes{
+      height: 638px;
+      width: 840px;
+      margin-top: 79px;
+      position: relative;
+      h4{
+        top: 211px;
+        position: relative;
+        font-size: 18px;
+        color: #494949;
+      }
+      h6{
+        top: 240px;
+        position: relative;
+        font-size: 16px;
+        color: #7C7C7C;
+      }
+      img{
+        height: 638px;
+        width: 743px;
+        position: absolute;
+        left: 300px;
+        top: -30px;
+      }
+    }
+    .iphone{
+      height: 490px;
+      width: 1000px;
+      padding-left: 710px;
+      position: relative;
+      padding-top: 20px;
+      img{
+        height: 718px;
+        position: absolute;
+        left: -150px;
+        top: -220px;
+        z-index: -2;
+      }
+      span{
+        font-size: 18px;
+        border: 2px solid #82D2F0;
+        border-radius: 30px;
+        padding: 10px 15px;
+        margin: 0 0 45px 0;
+        display: inline-block;
+      }
+      h3{
+        font-size: 16px;
+        line-height: 17px;
+        border-left: 3px solid #82D2F0;
+        padding-left: 21px;
+        color: #494949;
+        margin-bottom: 23px;
+        font-weight: 600;
+      }
+      pre{
+        color: #7C7C7C;
+        font-size: 14px;
+        line-height: 23px;
+      }
+    }
+    .management{
+      height: 474px;
+      position: relative;
+      margin-top: 60px;
+      width: 840px;
+      padding-top: 88px;
+      img{
+        height: 460px;
+        width: 436px;
+        position: absolute;
+        left: 570px;
+        top: -30px;
+      }
+      h3{
+        font-size: 16px;
+        line-height: 17px;
+        border-left: 3px solid #82D2F0;
+        padding-left: 21px;
+        color: #494949;
+        margin-bottom: 23px;
+        font-weight: 600;
+      }
+      pre{
+        color: #7C7C7C;
+        font-size: 14px;
+        line-height: 23px;
+      }
+    }
+    .process{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      div{
+        position: relative;
+        img{
+          height: 525px;
+          width: 783px;
+          position: relative;
+          transform: translateX(-50%);
+          left: 50%;
+        }
+        span{
+          position: absolute;
+        }
+        :nth-child(2){
+          top: 87px;
+          left: 95px;
+        }
+        :nth-child(3){
+          top: 87px;
+          left: 380px;
+        }
+        :nth-child(4){
+          top: 157px;
+          left: 532px;
+        }
+        :nth-child(5){
+          top: 302px;
+          left: 209px;
+          width: 150px;
+        }
+        :nth-child(6){
+          top: 302px;
+          left: 466px;
+          width: 150px;
+        }
+        :nth-child(7){
+          top: 385px;
+          left: 86px;
+          width: 150px;
+        }
+        :nth-child(8){
+          top: 520px;
+          left: 322px;
+        }
+      }
 
+    }
   }
+
 </style>

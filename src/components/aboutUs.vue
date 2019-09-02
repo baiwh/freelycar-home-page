@@ -63,90 +63,90 @@
 
 <style scoped lang="less">
   /*手机端css*/
-  @media only screen and (max-width: 414px) {
+  @media only screen and (max-width: 415px) {
 
   }
 
   /*手机电脑之间*/
-  @media only screen and (min-width: 414px) {
+  @media screen and (min-width:415px) and (max-width:1240px) {
 
   }
 
   /*电脑端*/
   @media only screen and (min-width: 1240px) {
-
-  }
-  .about-us{
-    border-bottom: 1px solid #dcdcdc;
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    transform: translateX(-50%);
-    position: relative;
-    left: 50%;
-    .head {
-      height: 464px;
-    }
-    > div {
-      width: 1240px;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      padding: 100px 0 75px 0;
+    .about-us{
       border-bottom: 1px solid #dcdcdc;
-    }
-    p{
-      font-size: 16px;
-      line-height: 30px;
-      text-align: center;
-      margin: 0 150px;
-    }
-  }
-
-  .time-line{
-    width: 1224px;
-    height: 325px;
-    margin: 30px 0;
-  }
-
-  .zhuanli{
-    img{
-      height: 242px;
-      width: 170px;
-      margin: 0 100px;
-    }
-  }
-  .zhengshu{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    margin: 96px 0;
-    img{
-      height: 215px;
-      width: 160px;
-    }
-  }
-  .shicha{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0 170px;
-    margin: 30px 0;
-    justify-content: space-between;
-    img{
-      width: 264px;
-      height: 178px;
-      margin-bottom: 30px;
-    }
-    div{
+      width: 100%;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
       align-items: center;
+      flex-direction: column;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+      .head {
+        height: 464px;
+      }
+      > div {
+        width: 1240px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 100px 0 75px 0;
+        border-bottom: 1px solid #dcdcdc;
+      }
+      p{
+        font-size: 16px;
+        line-height: 30px;
+        text-align: center;
+        margin: 0 150px;
+      }
+    }
+
+    .time-line{
+      width: 1224px;
+      height: 325px;
+      margin: 30px 0;
+    }
+
+    .zhuanli{
+      img{
+        height: 242px;
+        width: 170px;
+        margin: 0 100px;
+      }
+    }
+    .zhengshu{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+      margin: 96px 0;
+      img{
+        height: 215px;
+        width: 160px;
+      }
+    }
+    .shicha{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: 0 170px;
+      margin: 30px 0;
+      justify-content: space-between;
+      img{
+        width: 264px;
+        height: 178px;
+        margin-bottom: 30px;
+      }
+      div{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     }
   }
+
 </style>

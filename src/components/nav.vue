@@ -55,52 +55,52 @@
 
 <style scoped lang="less">
   /*手机端css*/
-  @media only screen and (max-width: 414px) {
+  @media only screen and (max-width: 415px) {
 
   }
 
   /*手机电脑之间*/
-  @media only screen and (min-width: 414px) {
+  @media screen and (min-width:415px) and (max-width:1240px) {
 
   }
 
   /*电脑端*/
   @media only screen and (min-width: 1240px) {
+    .nav{
+      width: 1240px;
+      height: 70px;
+      border-bottom: 1px solid #7AC8F5;
+      transform: translateX(-50%);
+      position: absolute;
+      top:0;
+      z-index: 100;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      img{
+        height: 30px;
+        width: 206px;
+      }
+      button{
+        font-size: 14px;
+        margin-left: 78px;
+        background: transparent;
+        border: transparent;
+      }
+      .apply{
+        background: #FFBD02;
+        color: white;
+        padding:5px 10px;
+        border-radius: 5px;
+      }
+    }
+    .yellow{
+      color: #F5BE42;
+    }
+    .white{
+      color: #FFFFFF;
+    }
+  }
 
-  }
-  .nav{
-    width: 1240px;
-    height: 70px;
-    border-bottom: 1px solid #7AC8F5;
-    transform: translateX(-50%);
-    position: absolute;
-    top:0;
-    z-index: 100;
-    left: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    img{
-      height: 30px;
-      width: 206px;
-    }
-    button{
-      font-size: 14px;
-      margin-left: 78px;
-      background: transparent;
-      border: transparent;
-    }
-    .apply{
-      background: #FFBD02;
-      color: white;
-      padding:5px 10px;
-      border-radius: 5px;
-    }
-  }
-  .yellow{
-    color: #F5BE42;
-  }
-  .white{
-    color: #FFFFFF;
-  }
 </style>

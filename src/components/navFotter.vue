@@ -54,55 +54,55 @@
 </script>
 
 <style scoped lang="less">
-  .footer{
-    height: 200px;
-    width: 1240px;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    padding-top: 30px;
-    div{
-      display: flex;
-      justify-content: space-around;
-    }
-    .call-us{
-      margin-bottom: 30px;
-      padding: 30px 300px;
-      span{
-        color: #7A7A7A;
-        font-size: 14px;
-        margin-left: 30px;
-      }
-      button{
-        color: #7A7A7A;
-        font-size: 14px;
-        background: transparent;
-        border: transparent;
-      }
-    }
-    .little{
-      b{
-        color: #7C7C7C;
-        font-size: 12px;
-      }
-    }
-    .beian span,a{
-      font-size: 12px;
-      color: #D1D1D1;
-    }
-  }
+
   /*手机端css*/
-  @media only screen and (max-width: 414px) {
+  @media only screen and (max-width: 415px) {
 
   }
 
   /*手机电脑之间*/
-  @media only screen and (min-width: 414px) {
+  @media screen and (min-width:415px) and (max-width:1240px) {
 
   }
 
   /*电脑端*/
   @media only screen and (min-width: 1240px) {
-
+    .footer{
+      height: 200px;
+      width: 1240px;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      padding-top: 30px;
+      div{
+        display: flex;
+        justify-content: space-around;
+      }
+      .call-us{
+        margin-bottom: 30px;
+        padding: 30px 300px;
+        span{
+          color: #7A7A7A;
+          font-size: 14px;
+          margin-left: 30px;
+        }
+        button{
+          color: #7A7A7A;
+          font-size: 14px;
+          background: transparent;
+          border: transparent;
+        }
+      }
+      .little{
+        b{
+          color: #7C7C7C;
+          font-size: 12px;
+        }
+      }
+      .beian span,a{
+        font-size: 12px;
+        color: #D1D1D1;
+      }
+    }
   }
 </style>

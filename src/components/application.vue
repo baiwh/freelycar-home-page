@@ -151,105 +151,105 @@
 
 <style scoped lang="less">
   /*手机端css*/
-  @media only screen and (max-width: 414px) {
+  @media only screen and (max-width: 415px) {
 
   }
 
   /*手机电脑之间*/
-  @media only screen and (min-width: 414px) {
+  @media screen and (min-width:415px) and (max-width:1240px) {
 
   }
 
   /*电脑端*/
   @media only screen and (min-width: 1240px) {
-
-  }
-  #container{
-    height: 100%;
-    width: 100%;
-  }
-  .application {
-    width: 100%;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    transform: translateX(-50%);
-    position: relative;
-    left: 50%;
-    .head {
-      height: 464px;
+    #container{
+      height: 100%;
+      width: 100%;
     }
-  }
-  .center{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 1240px;
-    padding: 100px 0;
-    border-bottom: 1px solid #dcdcdc;
-  }
-  .map{
-    width: 100%;
-    >div{
-      height: 500px;
-      width: 623px;
-      background: #7ac8f5;
-      margin-right: 150px;
-      float: left;
-    }
-    h3{
-      color: #82D2F0;
-      font-size: 18px;
-      margin-top: 65px;
-      margin-bottom: 25px;
-    }
-    h6{
-      color: #494949;
-      font-size: 16px;
-      line-height: 30px;
-    }
-  }
-  .form{
-    h1{
-      font-size: 28px;
-      color: #494949;
-      margin-bottom: 33px;
-    }
-    h2{
-      font-size: 18px;
-      color: #494949;
-      margin-bottom: 100px;
-      span{
-        color: #DB0000;
+    .application {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      transform: translateX(-50%);
+      position: relative;
+      left: 50%;
+      .head {
+        height: 464px;
       }
     }
-    input,button{
-      height: 65px;
-      width: 450px;
-      margin-bottom: 24px;
-      border-radius: 20px;
-      border: transparent;
-      padding: 0 50px;
-      font-size: 18px;
+    .center{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      width: 1240px;
+      padding: 100px 0;
+      border-bottom: 1px solid #dcdcdc;
     }
-    button{
-      height: 65px;
-      width: 550px;
-      margin-top: 50px;
-      border-radius: 20px;
-      border: transparent;
-      background: #66D4F4;
-      color: white;
-      box-shadow: 0 3px 10px #66D4F4;
-      font-size: 18px;
+    .map{
+      width: 100%;
+      >div{
+        height: 500px;
+        width: 623px;
+        background: #7ac8f5;
+        margin-right: 150px;
+        float: left;
+      }
+      h3{
+        color: #82D2F0;
+        font-size: 18px;
+        margin-top: 65px;
+        margin-bottom: 25px;
+      }
+      h6{
+        color: #494949;
+        font-size: 16px;
+        line-height: 30px;
+      }
     }
-    :nth-last-child(2),:nth-last-child(3){
-      background: #F5FAFA;
-    }
-    :nth-last-child(4){
-      box-shadow: 0 3px 10px #e4e8e8;
-    }
+    .form{
+      h1{
+        font-size: 28px;
+        color: #494949;
+        margin-bottom: 33px;
+      }
+      h2{
+        font-size: 18px;
+        color: #494949;
+        margin-bottom: 100px;
+        span{
+          color: #DB0000;
+        }
+      }
+      input,button{
+        height: 65px;
+        width: 450px;
+        margin-bottom: 24px;
+        border-radius: 20px;
+        border: transparent;
+        padding: 0 50px;
+        font-size: 18px;
+      }
+      button{
+        height: 65px;
+        width: 550px;
+        margin-top: 50px;
+        border-radius: 20px;
+        border: transparent;
+        background: #66D4F4;
+        color: white;
+        box-shadow: 0 3px 10px #66D4F4;
+        font-size: 18px;
+      }
+      :nth-last-child(2),:nth-last-child(3){
+        background: #F5FAFA;
+      }
+      :nth-last-child(4){
+        box-shadow: 0 3px 10px #e4e8e8;
+      }
 
+    }
   }
+
 </style>

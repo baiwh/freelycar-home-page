@@ -85,7 +85,7 @@
 
 
   /*手机端css*/
-  @media only screen and (max-width: 414px) {
+  @media only screen and (max-width: 415px) {
     .home {
 
       width: 100%;
@@ -99,7 +99,7 @@
   }
 
   /*手机电脑之间*/
-  @media only screen and (min-width: 414px) {
+  @media screen and (min-width:415px) and (max-width:1240px) {
     .home {
       width: 100%;
       overflow: hidden;
