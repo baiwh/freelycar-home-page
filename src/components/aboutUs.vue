@@ -93,6 +93,11 @@
         margin: 0 10px;
       }
     }
+    .company{
+      p{
+       font-size: 9px;
+      }
+    }
 
     .time-line{
       display: none;

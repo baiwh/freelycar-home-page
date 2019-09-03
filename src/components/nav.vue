@@ -2,7 +2,8 @@
   <div class="nav">
     <img class="logo-white" src="./../assets/logo.png" alt="">
     <img class="logo" src="./../assets/logo2.png" alt="">
-    <img class="nav-img" src="./../assets/nav.png" @click="showNav" alt="">
+    <span class="nav-div" @click="showNav"></span>
+    <img class="nav-img" src="./../assets/nav.png" alt="">
     <div :class="[isShowNav?'nav-item show':'nav-item']">
       <button
         :class="[$route.name===item.value?'yellow':'white']"
@@ -69,7 +70,6 @@
     .nav{
       background: white;
       width: 100vw;
-      padding: 0 10px;
       height: 50px;
       transform: translateX(-50%);
       position: absolute;
@@ -95,15 +95,21 @@
         button{
           color: black;
           width: 100%;
-          padding: 10px;
+          padding: 20px;
           background: transparent;
           border: transparent;
+          border-bottom: 1px solid #e4e7ed;
         }
       }
       .nav-img{
         width: 13px;
         height: 10px;
         margin-right: 15px;
+      }
+      .nav-div{
+        position: absolute;
+        height: 50px;
+        width: 100vw;
       }
       .logo-white{
         display: none;
@@ -145,6 +151,9 @@
         width: 206px;
       }
       .nav-img{
+        display: none;
+      }
+      .nav-div{
         display: none;
       }
       .logo{

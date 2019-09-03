@@ -109,7 +109,7 @@
       .model-info{
         font-size: 9px;
         width: 90vw;
-        line-height: 30px;
+        line-height: 20px;
         color: #818181;
         margin-bottom: 40px;
         padding: 0 40px;
