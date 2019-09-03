@@ -63,12 +63,13 @@
 
 <style scoped lang="less">
   /*手机端css*/
-  @media only screen and (max-width: 415px) {
+  /*@media only screen and (max-width: 415px) {*/
+  @media only screen and (max-width: 1240px) {
     .nav{
       background: white;
-      width: 320px;
+      width: 100vw;
+      padding: 0 10px;
       height: 50px;
-      border-bottom: 1px solid #7AC8F5;
       transform: translateX(-50%);
       position: absolute;
       top:0;
@@ -121,62 +122,8 @@
   }
 
   /*手机电脑之间*/
-  @media screen and (min-width:415px) and (max-width:1240px) {
-    .nav{
-      background: white;
-      width: 320px;
-      height: 50px;
-      border-bottom: 1px solid #7AC8F5;
-      transform: translateX(-50%);
-      position: absolute;
-      top:0;
-      z-index: 100;
-      left: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      div{
-        display: none;
-      }
-      .show{
-        display: block;
-      }
-      .nav-item{
-        height: 100vh;
-        width: 100vw;
-        background: white;
-        top: 50px;
-        opacity: 0.9;
-        position: absolute;
-        button{
-          color: black;
-          width: 100%;
-          padding: 10px;
-          background: transparent;
-          border: transparent;
-        }
-      }
-      .nav-img{
-        width: 13px;
-        height: 10px;
-        margin-right: 15px;
-      }
-      .logo-white{
-        display: none;
-      }
-      .logo{
-        height: 15px;
-        width: 94px;
-        margin-left: 15px;
-      }
-    }
-    .yellow{
-      color: #F5BE42;
-    }
-    .white{
-      color: #FFFFFF;
-    }
-  }
+  /*@media screen and (min-width:415px) and (max-width:1240px) {*/
+  /*}*/
 
   /*电脑端*/
   @media only screen and (min-width: 1240px) {

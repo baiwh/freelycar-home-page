@@ -100,7 +100,8 @@
   }
 
   /*手机端css*/
-  @media only screen and (max-width: 415px) {
+  /*@media only screen and (max-width: 415px) {*/
+  @media only screen and (max-width: 1240px) {
     .head {
       margin-top: 50px;
       height: 237px;
@@ -122,13 +123,13 @@
         top: 139px;
         left: 50%;
         position: absolute;
-        transform: translateX(-130px);
+        transform: translateX(-40vw);
       }
       h1,h2{
         position: absolute;
         color: white;
         left: 50%;
-        transform: translateX(-130px);
+        transform: translateX(-40vw);
       }
       h1{
         font-size: 18px;
@@ -137,6 +138,7 @@
       h2{
         font-size: 13px;
         top: 90px;
+        width: 40vw;
         b{
           color: #F5BE42;
         }
@@ -154,12 +156,11 @@
       align-items: center;
       flex-direction: column;
       img{
-        height: 42px;
-        width: 276px;
+        width: 75vw;
         margin-bottom: 7px;
       }
       div{
-        width: 320px;
+        width: 90vw;
         display: flex;
         justify-content: space-between;
         font-size: 7px;
@@ -200,11 +201,11 @@
         align-items: center;
         flex-direction: column;
         left: 50%;
-        top: 20px;
+        top: 30px;
         h2{
           color: #C0C1C1;
           font-size: 11px;
-          margin-bottom: 8px;
+          margin-bottom: 15px;
         }
         h1{
           color: #494949;
@@ -213,10 +214,10 @@
         p{
           color: #7C7C7C;
           font-size: 9px;
-          margin-bottom: 10px;
+          margin-bottom: 20px;
           text-align: center;
           line-height: 20px;
-          width: 320px;
+          width: 90vw;
         }
         h4{
           display: none;
@@ -250,8 +251,7 @@
       align-items: center;
       flex-direction: column;
       img{
-        height: 154px;
-        width: 291px;
+        width: 90vw;
       }
     }
 
@@ -269,7 +269,7 @@
       flex-direction: column;
       div {
         height: 200px;
-        width: 320px;
+        width: 95vw;
         margin-top: 20px;
         display: flex;
         justify-content: space-around;
@@ -284,188 +284,8 @@
   }
 
   /*手机电脑之间*/
-  @media screen and (min-width:415px) and (max-width:1240px) {
-    .head {
-      margin-top: 50px;
-      height: 237px;
-      width: 100%;
-      position: relative;
-      img{
-        position: absolute;
-        transform: translateX(-50%);
-        left: 50%;
-        height: 237px;
-      }
-      button{
-        background: #FFBD02;
-        font-size: 9px;
-        color: white;
-        border: transparent;
-        padding: 10px 25px;
-        border-radius: 7px;
-        top: 139px;
-        left: 50%;
-        position: absolute;
-        transform: translateX(-130px);
-      }
-      h1,h2{
-        position: absolute;
-        color: white;
-        left: 50%;
-        transform: translateX(-130px);
-      }
-      h1{
-        font-size: 18px;
-        top: 63px;
-      }
-      h2{
-        font-size: 13px;
-        top: 90px;
-        b{
-          color: #F5BE42;
-        }
-      }
-    }
-
-    .love-car{
-      height: 400px;
-      width: 100%;
-      padding: 49px 0 0 0;
-      position: relative;
-      transform: translateX(-50%);
-      left: 50%;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      img{
-        height: 42px;
-        width: 276px;
-        margin-bottom: 7px;
-      }
-      div{
-        width: 320px;
-        display: flex;
-        justify-content: space-between;
-        font-size: 7px;
-        margin-bottom: 37px;
-        span{
-          display: inline-block;
-          width: 70px;
-          text-align: center;
-          color: #494949;
-          font-weight: 600;
-        }
-      }
-      p{
-        font-size: 9px;
-        color: #7C7C7C;
-        margin: 0 15px;
-        text-align: center;
-        line-height: 20px;
-      }
-    }
-
-    .deep{
-      height: 374px;
-      width: 100%;
-      img{
-        position: absolute;
-        transform: translateX(-50%);
-        left: 50%;
-        height: 374px;
-      }
-      .ipad{
-        display: none;
-      }
-      div{
-        position: absolute;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        left: 50%;
-        top: 20px;
-        h2{
-          color: #C0C1C1;
-          font-size: 11px;
-          margin-bottom: 8px;
-        }
-        h1{
-          color: #494949;
-          font-size: 14px;
-        }
-        p{
-          color: #7C7C7C;
-          font-size: 9px;
-          margin-bottom: 10px;
-          text-align: center;
-          line-height: 20px;
-          width: 320px;
-        }
-        h4{
-          display: none;
-          img{
-            display: none;
-          }
-        }
-        button{
-          font-size: 9px;
-          color: white;
-          padding: 7px 15px;
-          box-shadow: 0 5px 10px #66D4F4;
-          background: #66D4F4;
-          border-radius: 40px;
-          border: transparent;
-          position: absolute;
-          transform: translateX(-50%);
-          left: 50%;
-        }
-      }
-    }
-
-    .process{
-      height: 349px;
-      width: 100%;
-      padding: 37px 0 0 0;
-      position: relative;
-      transform: translateX(-50%);
-      left: 50%;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      img{
-        height: 154px;
-        width: 291px;
-      }
-    }
-
-    .friend {
-      height: 375px;
-      width: 100%;
-      padding-top: 29px;
-      position: relative;
-      transform: translateX(-50%);
-      background: url("./../assets/bg2.png");
-      background-size: 100% 100%;
-      left: 50%;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      div {
-        height: 200px;
-        width: 320px;
-        margin-top: 20px;
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        img{
-          height: 38px;
-          width: 77px;
-          margin: 10px;
-        }
-      }
-    }
-  }
+  /*@media screen and (min-width:415px) and (max-width:1240px) {*/
+  /*}*/
 
   /*电脑端*/
   @media only screen and (min-width: 1241px) {
