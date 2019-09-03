@@ -40,7 +40,8 @@ button{
 
 
   /*手机端css*/
-  @media only screen and (max-width: 415px){
+  /*@media only screen and (max-width: 415px){*/
+  @media only screen and (max-width: 1240px){
     .title{
       h5{
         font-size: 7px;
@@ -60,50 +61,21 @@ button{
       }
     }
     .el-input__inner{
-      height: 65px !important;
-      width: 550px !important;
+      height: 39px !important;
+      width: 290px !important;
       border: transparent !important;
-      padding: 0 50px !important;
-      font-size: 18px !important;
+      padding: 0 20px !important;
+      font-size: 12px !important;
     }
     .el-cascader{
-      border-radius: 20px;
+      border-radius: 10px;
       overflow: hidden;
     }
   }
 
   /*手机电脑之间*/
-  @media screen and (min-width:415px) and (max-width:1240px) {
-    .title{
-      h5{
-        font-size: 14px;
-        color: #7C7C7C;
-        margin-bottom: 17px;
-      }
-      h1{
-        font-size: 28px;
-        color: #494949;
-        margin-bottom: 21px;
-      }
-      b{
-        background: #66D4F4;
-        height: 4px;
-        width: 34px;
-        margin-bottom: 62px;
-      }
-    }
-    .el-input__inner{
-      height: 65px !important;
-      width: 550px !important;
-      border: transparent !important;
-      padding: 0 50px !important;
-      font-size: 18px !important;
-    }
-    .el-cascader{
-      border-radius: 20px;
-      overflow: hidden;
-    }
-  }
+  /*@media screen and (min-width:415px) and (max-width:1240px) {*/
+  /*}*/
 
   /*电脑端*/
   @media only screen and (min-width: 1240px) {

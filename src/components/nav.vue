@@ -6,12 +6,12 @@
     <div :class="[isShowNav?'nav-item show':'nav-item']">
       <button
         :class="[$route.name===item.value?'yellow':'white']"
-        @click="chooseNavTab(item.value)"
+        @click="chooseNavTab(item.linkTo)"
         v-for="(item,index) in list">
         {{item.value}}
       </button>
       <router-link to="/contact">
-        <button class="apply">申请合作</button>
+        <button class="apply" @click="chooseNavTab">申请合作</button>
       </router-link>
     </div>
   </div>
@@ -51,11 +51,12 @@
 
       chooseNavTab(v){
         this.isShowNav = false
-        this.list.map(item=>{
-          if(item.value===v){
-            this.$router.push({path:item.linkTo})
-          }
-        })
+        this.$router.push({path:v})
+        // this.list.map(item=>{
+        //   if(item.value===v){
+        //     this.$router.push({path:item.linkTo})
+        //   }
+        // })
       }
     },
   }

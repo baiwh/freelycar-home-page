@@ -20,7 +20,6 @@
     <div class="center form">
       <h1>递交信息  免费获取项目资料</h1>
       <h2>目前已有<span>{{number}}</span>人免费获取加盟方案</h2>
-      <hr>
       <input placeholder="姓名" type="text" v-model="name">
       <input placeholder="联系方式" type="text" v-model="phone">
       <!--<input placeholder="区域" type="text" v-model="city">-->
@@ -151,7 +150,8 @@
 
 <style scoped lang="less">
   /*手机端css*/
-  @media only screen and (max-width: 415px) {
+  /*@media only screen and (max-width: 415px) {*/
+  @media only screen and (max-width: 1240px) {
     #container{
       height: 100%;
       width: 100%;
@@ -166,71 +166,72 @@
       position: relative;
       left: 50%;
       .head {
-        height: 464px;
+        height: 170px;
       }
     }
     .center{
       display: flex;
       align-items: center;
       flex-direction: column;
-      width: 1240px;
-      padding: 100px 0;
+      width: 90vw;
+      padding: 30px 0;
       border-bottom: 1px solid #dcdcdc;
     }
     .map{
       width: 100%;
       >div{
-        height: 500px;
-        width: 623px;
+        height: 90vw;
+        width: 90vw;
         background: #7ac8f5;
-        margin-right: 150px;
+        margin-bottom: 30px;
         float: left;
       }
       h3{
         color: #82D2F0;
-        font-size: 18px;
-        margin-top: 65px;
-        margin-bottom: 25px;
+        font-size: 12px;
+        margin-bottom: 15px;
+        text-align: center;
       }
       h6{
         color: #494949;
-        font-size: 16px;
+        font-size: 11px;
+        text-align: center;
         line-height: 30px;
       }
     }
     .form{
       h1{
-        font-size: 28px;
+        font-size: 14px;
         color: #494949;
-        margin-bottom: 33px;
+        margin-bottom: 17px;
       }
       h2{
-        font-size: 18px;
+        font-size: 11px;
         color: #494949;
-        margin-bottom: 100px;
+        margin-bottom: 40px;
         span{
           color: #DB0000;
         }
       }
       input,button{
-        height: 65px;
-        width: 450px;
+        height: 39px;
+        width: 250px;
         margin-bottom: 24px;
-        border-radius: 20px;
+        border-radius: 10px;
         border: transparent;
-        padding: 0 50px;
-        font-size: 18px;
+        padding: 0 20px;
+        font-size: 12px;
       }
       button{
-        height: 65px;
-        width: 550px;
-        margin-top: 50px;
-        border-radius: 20px;
+        height: 39px;
+        width: 290px;
+        margin-top: 30px;
+        border-radius: 10px;
         border: transparent;
         background: #66D4F4;
         color: white;
         box-shadow: 0 3px 10px #66D4F4;
-        font-size: 18px;
+        font-size: 13px;
       }
       :nth-last-child(2),:nth-last-child(3){
         background: #F5FAFA;
@@ -243,96 +244,8 @@
   }
 
   /*手机电脑之间*/
-  @media screen and (min-width:415px) and (max-width:1240px) {
-    #container{
-      height: 100%;
-      width: 100%;
-    }
-    .application {
-      width: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      transform: translateX(-50%);
-      position: relative;
-      left: 50%;
-      .head {
-        height: 464px;
-      }
-    }
-    .center{
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      width: 1240px;
-      padding: 100px 0;
-      border-bottom: 1px solid #dcdcdc;
-    }
-    .map{
-      width: 100%;
-      >div{
-        height: 500px;
-        width: 623px;
-        background: #7ac8f5;
-        margin-right: 150px;
-        float: left;
-      }
-      h3{
-        color: #82D2F0;
-        font-size: 18px;
-        margin-top: 65px;
-        margin-bottom: 25px;
-      }
-      h6{
-        color: #494949;
-        font-size: 16px;
-        line-height: 30px;
-      }
-    }
-    .form{
-      h1{
-        font-size: 28px;
-        color: #494949;
-        margin-bottom: 33px;
-      }
-      h2{
-        font-size: 18px;
-        color: #494949;
-        margin-bottom: 100px;
-        span{
-          color: #DB0000;
-        }
-      }
-      input,button{
-        height: 65px;
-        width: 450px;
-        margin-bottom: 24px;
-        border-radius: 20px;
-        border: transparent;
-        padding: 0 50px;
-        font-size: 18px;
-      }
-      button{
-        height: 65px;
-        width: 550px;
-        margin-top: 50px;
-        border-radius: 20px;
-        border: transparent;
-        background: #66D4F4;
-        color: white;
-        box-shadow: 0 3px 10px #66D4F4;
-        font-size: 18px;
-      }
-      :nth-last-child(2),:nth-last-child(3){
-        background: #F5FAFA;
-      }
-      :nth-last-child(4){
-        box-shadow: 0 3px 10px #e4e8e8;
-      }
-
-    }
-  }
+  /*@media screen and (min-width:415px) and (max-width:1240px) {*/
+  /*}*/
 
   /*电脑端*/
   @media only screen and (min-width: 1240px) {

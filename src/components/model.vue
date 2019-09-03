@@ -86,7 +86,8 @@
 
 <style scoped lang="less">
   /*手机端css*/
-  @media only screen and (max-width: 415px) {
+  /*@media only screen and (max-width: 415px) {*/
+  @media only screen and (max-width: 1240px) {
     .model{
       width: 100%;
       overflow: hidden;
@@ -97,54 +98,59 @@
       position: relative;
       left: 50%;
       .head {
-        height: 464px;
+        height: 170px;
       }
       > div {
-        width: 1240px;
+        width: 90vw;
         display: flex;
         align-items: center;
         flex-direction: column;
       }
       .model-info{
-        font-size: 14px;
-        width: 1240px;
+        font-size: 9px;
+        width: 90vw;
         line-height: 30px;
         color: #818181;
-        margin-bottom: 140px;
-        padding: 0 130px;
+        margin-bottom: 40px;
+        padding: 0 40px;
       }
       h2{
         color: #82D2F0;
-        font-size: 28px;
-        margin: 130px 0 80px 0;
+        font-size: 13px;
+        margin: 30px 0 30px 0;
       }
     }
     .model-img{
       position: relative;
       width: 100%;
-      margin-bottom: 110px;
+      margin-bottom: 20px;
+      div{
+        position: absolute;
+      }
       img{
-        height: 570px;
-        width: 650px;
+        width: 220px;
+        top: 30px;
+        position: relative;
+        margin-bottom: 50px;
       }
       h6{
-        font-size: 18px;
-        margin-bottom: 30px;
+        font-size: 12px;
+        margin-bottom: 10px;
       }
       p{
         color: #7C7C7C;
-        font-size: 14px;
-        line-height: 10px;
+        font-size: 8px;
+        line-height: 15px;
       }
       >:nth-child(3){
-        position: absolute;
-        left: 180px;
-        top: 400px;
+        transform: translateX(-120%);
+        width: 82px;
+        top: 145px;
       }
       >:nth-child(4){
-        position: absolute;
-        left: 960px;
-        top: 400px;
+        top: 145px;
+        width: 82px;
+        transform: translateX(120px);
       }
     }
     .border-solid{
@@ -154,152 +160,49 @@
       border-left: 4px dotted #66D4F4;
     }
     .time-line{
-      width: 380px;
-      height: 450px;
-      padding-left: 160px;
+      width: 150px;
+      height: 300px;
+      padding-left: 30px;
       position: relative;
       :nth-child(5),:nth-last-child(1),:nth-last-child(2){
-        margin-top: 30px;
+        margin-top: 20px;
       }
       img{
-        height: 30px;
-        width: 30px;
+        height: 25px;
+        width: 25px;
         position: absolute;
-        left: -17px;
+        left: -15px;
         top: -8px;
       }
       span{
-        font-size: 20px;
+        font-size: 14px;
         color: #66D4F4;
       }
       h3{
-        font-size: 18px;
-        width: 300px;
+        font-size: 14px;
+        width: 180px;
       }
       p{
-        font-size: 14px;
+        font-size: 9px;
         color: #7C7C7C;
-        width: 300px;
+        width: 180px;
+        line-height: 13px;
       }
       .year{
         position: absolute;
-        left: -100px;
-        top: -7px;
+        left: -70px;
+        top: -5px;
       }
       .big{
-        font-size: 35px;
+        font-size: 25px;
         margin: 0 10px;
       }
     }
   }
 
   /*手机电脑之间*/
-  @media screen and (min-width:415px) and (max-width:1240px) {
-    .model{
-      width: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      transform: translateX(-50%);
-      position: relative;
-      left: 50%;
-      .head {
-        height: 464px;
-      }
-      > div {
-        width: 1240px;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-      }
-      .model-info{
-        font-size: 14px;
-        width: 1240px;
-        line-height: 30px;
-        color: #818181;
-        margin-bottom: 140px;
-        padding: 0 130px;
-      }
-      h2{
-        color: #82D2F0;
-        font-size: 28px;
-        margin: 130px 0 80px 0;
-      }
-    }
-    .model-img{
-      position: relative;
-      width: 100%;
-      margin-bottom: 110px;
-      img{
-        height: 570px;
-        width: 650px;
-      }
-      h6{
-        font-size: 18px;
-        margin-bottom: 30px;
-      }
-      p{
-        color: #7C7C7C;
-        font-size: 14px;
-        line-height: 10px;
-      }
-      >:nth-child(3){
-        position: absolute;
-        left: 180px;
-        top: 400px;
-      }
-      >:nth-child(4){
-        position: absolute;
-        left: 960px;
-        top: 400px;
-      }
-    }
-    .border-solid{
-      border-left: 4px solid #66D4F4;
-    }
-    .border-dotted{
-      border-left: 4px dotted #66D4F4;
-    }
-    .time-line{
-      width: 380px;
-      height: 450px;
-      padding-left: 160px;
-      position: relative;
-      :nth-child(5),:nth-last-child(1),:nth-last-child(2){
-        margin-top: 30px;
-      }
-      img{
-        height: 30px;
-        width: 30px;
-        position: absolute;
-        left: -17px;
-        top: -8px;
-      }
-      span{
-        font-size: 20px;
-        color: #66D4F4;
-      }
-      h3{
-        font-size: 18px;
-        width: 300px;
-      }
-      p{
-        font-size: 14px;
-        color: #7C7C7C;
-        width: 300px;
-      }
-      .year{
-        position: absolute;
-        left: -100px;
-        top: -7px;
-      }
-      .big{
-        font-size: 35px;
-        margin: 0 10px;
-      }
-    }
-  }
+  /*@media screen and (min-width:415px) and (max-width:1240px) {*/
+  /*}*/
 
   /*电脑端*/
   @media only screen and (min-width: 1240px) {
