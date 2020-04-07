@@ -5,10 +5,13 @@ import App from './App'
 import router from './router'
 import navigation from './../src/components/nav.vue'
 import bottomNav from './../src/components/navFotter.vue'
-import { Cascader } from 'element-ui'
+import {Cascader, Carousel, CarouselItem,} from 'element-ui'
+
 Vue.component(Cascader.name, Cascader)
 Vue.component('navigation', navigation)
 Vue.component('bottomNav', bottomNav)
+Vue.use(Carousel);
+Vue.use(CarouselItem);
 
 Vue.config.productionTip = false
 
@@ -16,6 +19,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })
