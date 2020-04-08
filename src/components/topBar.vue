@@ -20,7 +20,7 @@
 
 <script>
   export default {
-    name: 'nav',
+    name: 'topBar',
     data() {
       return {
         list:[

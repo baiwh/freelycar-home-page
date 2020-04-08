@@ -3,15 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import navigation from './../src/components/nav.vue'
-import bottomNav from './../src/components/navFotter.vue'
+import topBar from './../src/components/topBar.vue'
+import bottomBar from './../src/components/bottomBar.vue'
 import {Cascader, Carousel, CarouselItem,} from 'element-ui'
 
 Vue.component(Cascader.name, Cascader)
-Vue.component('navigation', navigation)
-Vue.component('bottomNav', bottomNav)
-Vue.use(Carousel);
-Vue.use(CarouselItem);
+Vue.component(Carousel.name, Carousel)
+Vue.component(CarouselItem.name, CarouselItem)
+Vue.component('topBar', topBar)
+Vue.component('bottomBar', bottomBar)
 
 Vue.config.productionTip = false
 
