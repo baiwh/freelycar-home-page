@@ -188,102 +188,102 @@
             {"2019-05": 0}, {"2019-06": 0}, {"2019-07": 0}, {"2019-08": 17}, {"2019-09": 15}, {"2019-10": 7}, {"2019-11": 21}, {"2019-12": 61}, {"2020-01": 4}, {"2020-02": 2}, {"2020-03": 6}, {"2020-04": 0}],
           "newUser": [
             {
-            "date": "2019-05",
-            "activeCount": 0,
-            "totalConversion": 0.02,
-            "invertionRate": 0.0,
-            "sum": 65,
-            "effectiveAddition": 1,
-            "addition": 26
-          }, {
-            "date": "2019-06",
-            "activeCount": 0,
-            "totalConversion": 0.01,
-            "invertionRate": 0.0,
-            "sum": 73,
-            "effectiveAddition": 1,
-            "addition": 8
-          }, {
-            "date": "2019-07",
-            "activeCount": 0,
-            "totalConversion": 0.01,
-            "invertionRate": 0.0,
-            "sum": 92,
-            "effectiveAddition": 1,
-            "addition": 19
-          }, {
-            "date": "2019-08",
-            "activeCount": 3,
-            "totalConversion": 0.04,
-            "invertionRate": 0.18,
-            "sum": 109,
-            "effectiveAddition": 4,
-            "addition": 17
-          }, {
-            "date": "2019-09",
-            "activeCount": 7,
-            "totalConversion": 0.08,
-            "invertionRate": 0.26,
-            "sum": 136,
-            "effectiveAddition": 11,
-            "addition": 27
-          }, {
-            "date": "2019-10",
-            "activeCount": 2,
-            "totalConversion": 0.09,
-            "invertionRate": 0.15,
-            "sum": 149,
-            "effectiveAddition": 13,
-            "addition": 13
-          }, {
-            "date": "2019-11",
-            "activeCount": 7,
-            "totalConversion": 0.12,
-            "invertionRate": 0.58,
-            "sum": 161,
-            "effectiveAddition": 20,
-            "addition": 12
-          }, {
-            "date": "2019-12",
-            "activeCount": 54,
-            "totalConversion": 0.27,
-            "invertionRate": 0.48,
-            "sum": 274,
-            "effectiveAddition": 74,
-            "addition": 113
-          }, {
-            "date": "2020-01",
-            "activeCount": 1,
-            "totalConversion": 0.26,
-            "invertionRate": 0.06,
-            "sum": 292,
-            "effectiveAddition": 75,
-            "addition": 18
-          }, {
-            "date": "2020-02",
-            "activeCount": 0,
-            "totalConversion": 0.25,
-            "invertionRate": 0.0,
-            "sum": 299,
-            "effectiveAddition": 75,
-            "addition": 7
-          }, {
-            "date": "2020-03",
-            "activeCount": 6,
-            "totalConversion": 0.26,
-            "invertionRate": 0.43,
-            "sum": 313,
-            "effectiveAddition": 81,
-            "addition": 14
-          }, {
-            "date": "2020-04",
-            "activeCount": 0,
-            "totalConversion": 0.26,
-            "invertionRate": 0.0,
-            "sum": 313,
-            "effectiveAddition": 81,
-            "addition": 0
-          }],
+              "date": "2019-05",
+              "activeCount": 0,
+              "totalConversion": 0.02,
+              "invertionRate": 0.0,
+              "sum": 65,
+              "effectiveAddition": 1,
+              "addition": 26
+            }, {
+              "date": "2019-06",
+              "activeCount": 0,
+              "totalConversion": 0.01,
+              "invertionRate": 0.0,
+              "sum": 73,
+              "effectiveAddition": 1,
+              "addition": 8
+            }, {
+              "date": "2019-07",
+              "activeCount": 0,
+              "totalConversion": 0.01,
+              "invertionRate": 0.0,
+              "sum": 92,
+              "effectiveAddition": 1,
+              "addition": 19
+            }, {
+              "date": "2019-08",
+              "activeCount": 3,
+              "totalConversion": 0.04,
+              "invertionRate": 0.18,
+              "sum": 109,
+              "effectiveAddition": 4,
+              "addition": 17
+            }, {
+              "date": "2019-09",
+              "activeCount": 7,
+              "totalConversion": 0.08,
+              "invertionRate": 0.26,
+              "sum": 136,
+              "effectiveAddition": 11,
+              "addition": 27
+            }, {
+              "date": "2019-10",
+              "activeCount": 2,
+              "totalConversion": 0.09,
+              "invertionRate": 0.15,
+              "sum": 149,
+              "effectiveAddition": 13,
+              "addition": 13
+            }, {
+              "date": "2019-11",
+              "activeCount": 7,
+              "totalConversion": 0.12,
+              "invertionRate": 0.58,
+              "sum": 161,
+              "effectiveAddition": 20,
+              "addition": 12
+            }, {
+              "date": "2019-12",
+              "activeCount": 54,
+              "totalConversion": 0.27,
+              "invertionRate": 0.48,
+              "sum": 274,
+              "effectiveAddition": 74,
+              "addition": 113
+            }, {
+              "date": "2020-01",
+              "activeCount": 1,
+              "totalConversion": 0.26,
+              "invertionRate": 0.06,
+              "sum": 292,
+              "effectiveAddition": 75,
+              "addition": 18
+            }, {
+              "date": "2020-02",
+              "activeCount": 0,
+              "totalConversion": 0.25,
+              "invertionRate": 0.0,
+              "sum": 299,
+              "effectiveAddition": 75,
+              "addition": 7
+            }, {
+              "date": "2020-03",
+              "activeCount": 6,
+              "totalConversion": 0.26,
+              "invertionRate": 0.43,
+              "sum": 313,
+              "effectiveAddition": 81,
+              "addition": 14
+            }, {
+              "date": "2020-04",
+              "activeCount": 0,
+              "totalConversion": 0.26,
+              "invertionRate": 0.0,
+              "sum": 313,
+              "effectiveAddition": 81,
+              "addition": 0
+            }],
           "averageUsage": [
             {"2019-05": 0.0}, {"2019-06": 0.0}, {"2019-07": 0.0}, {"2019-08": 6.47}, {"2019-09": 8.93}, {"2019-10": 10.86}, {"2019-11": 5.86}, {"2019-12": 1.51}, {"2020-01": 2.25}, {"2020-02": 1.0}, {"2020-03": 1.5}, {"2020-04": 0.0}],
           "averageConsumption": 13.13,
@@ -295,10 +295,10 @@
             {"2019-05": 2325}, {"2019-06": 2325}, {"2019-07": 2325}, {"2019-08": 5610}, {"2019-09": 5610}, {"2019-10": 5610}, {"2019-11": 5610}, {"2019-12": 5610}, {"2020-01": 6639}, {"2020-02": 6639}, {"2020-03": 10056}, {"2020-04": 10056}],
           "storeRanking": [
             {"count": 282, "name": "徐庄研发三区店", "sum": 8704.10}, {
-            "count": 195,
-            "name": "徐庄研发三区店",
-            "sum": 480.72
-          }, {"count": 78, "name": "徐庄研发三区店", "sum": 6418.0}]
+              "count": 195,
+              "name": "徐庄研发三区店",
+              "sum": 480.72
+            }, {"count": 78, "name": "徐庄研发三区店", "sum": 6418.0}]
         }
       }
     },
@@ -306,27 +306,27 @@
       // ws
       openWs() {
         ws = new WebSocket("ws://192.168.0.163:8081/test")
-        ws.onopen = (evt)=>{
+        ws.onopen = (evt) => {
           console.log("连接成功", evt)
         };
-        ws.onmessage = (evt)=>{
+        ws.onmessage = (evt) => {
           console.log("收到：", JSON.parse(evt.data))
           this.drawCharts(JSON.parse(evt.data))
         };
-        ws.onerror = (evt)=>{
-          alert("错误：" + evt.data ? evt.data : '网络连接出错')
+        ws.onerror = (evt) => {
+          alert("错误：" + (evt.data && evt.data !== undefined) ? evt.data : '网络连接出错')
           ws.close()
           this.openWs()
         };
       },
 
       // 数据处理+绘制
-      drawCharts(data){
+      drawCharts(data) {
 
       },
 
       // 折线图+环状图
-      categoryCharts(data,id) {
+      categoryCharts(data, id) {
         let option = {
           title: {
             text: '某楼盘销售情况',
@@ -365,7 +365,7 @@
       },
 
       // 单列柱状图
-      yAxisCharts(data,id) {
+      yAxisCharts(data, id) {
         let option = {
           legend: {},
           tooltip: {},
@@ -392,7 +392,7 @@
       },
 
       // 双列柱状图
-      doubleYAxisCharts(data,id) {
+      doubleYAxisCharts(data, id) {
         let option = {
           legend: {},
           tooltip: {},
@@ -419,7 +419,7 @@
       },
 
       // 横向柱状图
-      xAxisCharts(data,id) {
+      xAxisCharts(data, id) {
         let option = {
           dataset: {
             source: [
@@ -455,26 +455,26 @@
       },
 
       // 重叠柱状图
-      overlappingCharts(data,id) {
+      overlappingCharts(data, id) {
         let option = {}
         const myChart = echarts.init(document.getElementById('main'));
         myChart.setOption(option)
       },
 
       // 饼状图
-      pieCharts(data,id) {
+      pieCharts(data, id) {
         let option = {
-          series : [
+          series: [
             {
               name: '访问来源',
               type: 'pie',
               radius: '55%',
-              data:[
-                {value:235, name:'视频广告'},
-                {value:274, name:'联盟广告'},
-                {value:310, name:'邮件营销'},
-                {value:335, name:'直接访问'},
-                {value:400, name:'搜索引擎'}
+              data: [
+                {value: 235, name: '视频广告'},
+                {value: 274, name: '联盟广告'},
+                {value: 310, name: '邮件营销'},
+                {value: 335, name: '直接访问'},
+                {value: 400, name: '搜索引擎'}
               ]
             }
           ]
@@ -484,7 +484,7 @@
       },
 
       // 环状图
-      ringCharts(data,id) {
+      ringCharts(data, id) {
         let option = {}
         const myChart = echarts.init(document.getElementById('main'));
         myChart.setOption(option)
