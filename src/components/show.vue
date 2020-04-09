@@ -27,7 +27,7 @@
           <div class="show-first-left">
             <div class="show-card">
               <span class="show-card-title">智能柜总台数</span>
-              <div class="show-card-echarts" id="main"></div>
+              <div class="show-card-echarts" id="ark"></div>
             </div>
             <div class="show-card">
               <span class="show-card-title">使用用户数和注册用户数</span>
@@ -39,20 +39,19 @@
             <div class="show-first-car-item" :key="index"
                  v-for="(item,index) in projectRanking">
               <span>{{item.name}}</span>
-              <span>{{item.count}}</span>
+              <span>{{item.value}}</span>
             </div>
           </div>
 
           <div class="show-first-project">
             <span>服务项目排名</span>
-            <div></div>
-            <div></div>
+            <div id="projectTypeSumList"></div>
           </div>
 
           <div class="show-first-right">
             <div class="show-card">
               <span class="show-card-title">智能柜总覆盖用户数</span>
-              <div class="show-card-echarts"></div>
+              <div class="show-card-echarts" id="user"></div>
             </div>
             <div class="show-card-large">
               <span class="show-card-title">业务量和业绩量</span>
@@ -60,7 +59,7 @@
               <div>
 
               </div>
-              <div class="show-card-echarts"></div>
+              <div class="show-card-echarts" id="storeRanking"></div>
             </div>
           </div>
         </div>
@@ -71,7 +70,7 @@
         <div class="show-second">
           <div class="show-second-left">
             <div>用户平均每月消费数
-              <span>1872</span>元/月
+              <span>{{averageConsumption}}</span>元/月
             </div>
           </div>
           <div class="show-second-right">
@@ -82,7 +81,7 @@
               </div>
               <div class="show-card">
                 <span class="show-card-title">用户平均使用频次</span>
-                <div class="show-card-echarts"></div>
+                <div class="show-card-echarts" id="averageUsage"></div>
               </div>
             </div>
             <div class="show-second-bottom">
@@ -121,11 +120,11 @@
           <div class="show-third-right">
             <div class="show-card">
               <span class="show-card-title">按消费次数排名</span>
-              <div class="show-card-echarts"></div>
+              <div class="show-card-echarts" id="topCarBrandByConsumptionTime"></div>
             </div>
             <div class="show-card">
               <span class="show-card-title">按消费金额排名</span>
-              <div class="show-card-echarts"></div>
+              <div class="show-card-echarts" id="topCarBrandByAverageConsumption"></div>
             </div>
             <div class="show-card">
               <span class="show-card-title">车龄统计</span>
@@ -133,11 +132,11 @@
             </div>
             <div class="show-card">
               <span class="show-card-title">用户增长率排名</span>
-              <div class="show-card-echarts"></div>
+              <div class="show-card-echarts" id="topCarBrandByUserIncrement"></div>
             </div>
             <div class="show-card">
               <span class="show-card-title">品牌用户复购率排名</span>
-              <div class="show-card-echarts"></div>
+              <div class="show-card-echarts" id="topCarBrandByRepeatUse"></div>
             </div>
             <div class="show-card">
               <span class="show-card-title">用户车辆价值</span>
@@ -152,40 +151,130 @@
 
   </div>
 </template>
+<!--topCarBrand-->
+<!--3.智能柜使用用户数: activeUser-->
+<!--4.门店排名:      storeRanking-->
+<!--8.新增注册用户数,总注册数与用户转化率: newUser-->
+
+<!--用户中汽车品牌top10   topCarBrandByUser-->
 
 <script>
   const echarts = require('echarts')
+  import {Loading} from 'element-ui'
+
   let ws = {}
   export default {
     name: 'show',
     data() {
       return {
-        projectRanking: [
-          {
-            name: '美容',
-            count: 36
-          }, {
-            name: '保养',
-            count: 215
-          }, {
-            name: '检测',
-            count: 123
-          }, {
-            name: '其他',
-            count: 239
-          }, {
-            name: '维修',
-            count: 236
-          }, {
-            name: '精洗',
-            count: 156
-          },
-        ],
+        projectRanking: [],
+        loading: true,
+        averageConsumption: '',
         testInfo: {
           "projectTypeSumList": [
-            {"美容": 396}, {"测试": 244}, {"保养": 234}, {"汽车检测": 209}, {"汽车精修": 183}, {"维修": 1}],
+            {
+              "美容": 396
+            }, {
+              "测试": 244
+            }, {
+              "保养": 234
+            }, {
+              "汽车检测": 209
+            }, {
+              "汽车精修": 183
+            }, {
+              "维修": 1
+            }],
           "activeUser": [
-            {"2019-05": 0}, {"2019-06": 0}, {"2019-07": 0}, {"2019-08": 17}, {"2019-09": 15}, {"2019-10": 7}, {"2019-11": 21}, {"2019-12": 61}, {"2020-01": 4}, {"2020-02": 2}, {"2020-03": 6}, {"2020-04": 0}],
+            {
+              "2019-05": 0
+            }, {
+              "2019-06": 0
+            }, {
+              "2019-07": 0
+            }, {
+              "2019-08": 17
+            }, {
+              "2019-09": 15
+            }, {
+              "2019-10": 7
+            }, {
+              "2019-11": 21
+            }, {
+              "2019-12": 61
+            }, {
+              "2020-01": 4
+            }, {
+              "2020-02": 2
+            }, {
+              "2020-03": 6
+            }, {
+              "2020-04": 0
+            }],
+          "storeRanking": [
+            {
+              "count": 282,
+              "name": "徐庄研发三区店",
+              "sum": 8704.10
+            }, {
+              "count": 195,
+              "name": "青创演示门店",
+              "sum": 480.72
+            }, {
+              "count": 78,
+              "name": "紫金嘉悦",
+              "sum": 6418.0
+            }],
+          "topCarBrandByAverageConsumption": [
+            {
+              "别克": 448.81
+            }, {
+              "奥迪": 227.08
+            }, {
+              "宝骏": 42.52
+            }, {
+              "宝马": 34.61
+            }, {
+              "福特": 11.0
+            }, {
+              "奔驰": 3.58
+            }, {
+              "本田": 1.0
+            }, {
+              "日产": 1.0
+            }, {
+              "雷克萨斯": 1.0
+            }, {
+              "英菲尼迪": 1.0
+            }],
+          "topCarBrandByUserIncrement": [
+            {
+              "长安轻型车": 1.0
+            }, {
+              "马自达": 0.25
+            }, {
+              "宝骏": 0.2
+            }, {
+              "ALPINA": 0.14
+            }, {
+              "雪佛兰": 0.13
+            }, {
+              "宝马": 0.09
+            },],
+          "topCarBrandByConsumptionTime": [
+            {
+              "别克": 221
+            }, {
+              "奥迪": 159
+            }, {
+              "宝马": 14
+            }, {
+              "奔驰": 13
+            }, {
+              "沃尔沃": 11
+            }, {
+              "宝骏": 9
+            },],
           "newUser": [
             {
               "date": "2019-05",
@@ -284,34 +373,129 @@
               "effectiveAddition": 81,
               "addition": 0
             }],
+          "topCarBrandByUser": [
+            {
+              "奥迪": 0.12
+            }, {
+              "宝马": 0.09
+            }, {
+              "奔驰": 0.09
+            }, {
+              "大众": 0.08
+            }, {
+              "别克": 0.06
+            }, {
+              "本田": 0.05
+            },],
           "averageUsage": [
-            {"2019-05": 0.0}, {"2019-06": 0.0}, {"2019-07": 0.0}, {"2019-08": 6.47}, {"2019-09": 8.93}, {"2019-10": 10.86}, {"2019-11": 5.86}, {"2019-12": 1.51}, {"2020-01": 2.25}, {"2020-02": 1.0}, {"2020-03": 1.5}, {"2020-04": 0.0}],
+            {
+              "2019-05": 0.0
+            }, {
+              "2019-06": 0.0
+            }, {
+              "2019-07": 0.0
+            }, {
+              "2019-08": 6.47
+            }, {
+              "2019-09": 8.93
+            }, {
+              "2019-10": 10.86
+            }, {
+              "2019-11": 5.86
+            }, {
+              "2019-12": 1.51
+            }, {
+              "2020-01": 2.25
+            }, {
+              "2020-02": 1.0
+            }, {
+              "2020-03": 1.5
+            }, {
+              "2020-04": 0.0
+            }],
           "averageConsumption": 13.13,
           "ark": [
-            {"2019-05": 3}, {"2019-06": 3}, {"2019-07": 3}, {"2019-08": 8}, {"2019-09": 8}, {"2019-10": 8}, {"2019-11": 8}, {"2019-12": 8}, {"2020-01": 10}, {"2020-02": 10}, {"2020-03": 15}, {"2020-04": 15}],
-          "topCarBrand": [
-            {"凯迪拉克XTS": 8}, {"ALFA 159": 8}, {"奥迪A6(进口)": 8}, {"ALPINA B4": 6}, {"奥迪Q5": 6}, {"途观": 6}, {"宝骏E100": 5}, {"奔驰S级": 4}, {"宝斯通": 4}, {"缤智": 4}],
+            {
+              "2019-05": 3
+            }, {
+              "2019-06": 3
+            }, {
+              "2019-07": 3
+            }, {
+              "2019-08": 8
+            }, {
+              "2019-09": 8
+            }, {
+              "2019-10": 8
+            }, {
+              "2019-11": 8
+            }, {
+              "2019-12": 8
+            }, {
+              "2020-01": 10
+            }, {
+              "2020-02": 10
+            }, {
+              "2020-03": 15
+            }, {
+              "2020-04": 15
+            }],
+          "topCarBrandByRepeatUse": [
+            {
+              "AC Schnitzer": 0.5
+            }, {
+              "雷克萨斯": 0.5
+            }, {
+              "阿尔法·罗密欧": 0.43
+            }, {
+              "宝骏": 0.4
+            }, {
+              "安凯客车": 0.4
+            }, {
+              "起亚": 0.33
+            },],
           "user": [
-            {"2019-05": 2325}, {"2019-06": 2325}, {"2019-07": 2325}, {"2019-08": 5610}, {"2019-09": 5610}, {"2019-10": 5610}, {"2019-11": 5610}, {"2019-12": 5610}, {"2020-01": 6639}, {"2020-02": 6639}, {"2020-03": 10056}, {"2020-04": 10056}],
-          "storeRanking": [
-            {"count": 282, "name": "徐庄研发三区店", "sum": 8704.10}, {
-              "count": 195,
-              "name": "徐庄研发三区店",
-              "sum": 480.72
-            }, {"count": 78, "name": "徐庄研发三区店", "sum": 6418.0}]
+            {
+              "2019-05": 1935
+            }, {
+              "2019-06": 1935
+            }, {
+              "2019-07": 1935
+            }, {
+              "2019-08": 5749
+            }, {
+              "2019-09": 5749
+            }, {
+              "2019-10": 5749
+            }, {
+              "2019-11": 5749
+            }, {
+              "2019-12": 5749
+            }, {
+              "2020-01": 6950
+            }, {
+              "2020-02": 6950
+            }, {
+              "2020-03": 10218
+            }, {
+              "2020-04": 10218
+            }]
         }
       }
     },
     methods: {
       // ws
       openWs() {
+        let loadingInstance = Loading.service({fullscreen: true, background: 'rgba(0,0,0,0.8)'});
         ws = new WebSocket("ws://192.168.0.163:8081/test")
         ws.onopen = (evt) => {
           console.log("连接成功", evt)
         };
         ws.onmessage = (evt) => {
           console.log("收到：", JSON.parse(evt.data))
+          console.log("收到：", evt.data)
           this.drawCharts(JSON.parse(evt.data))
+          loadingInstance.close();
         };
         ws.onerror = (evt) => {
           alert("错误：" + (evt.data && evt.data !== undefined) ? evt.data : '网络连接出错')
@@ -320,13 +504,119 @@
         };
       },
 
+      // 单柱图分离key和value
+      getKeyValue(data) {
+        let newData = {time: [], data: []}
+        data.forEach(value => {
+          newData.time.push(Object.keys(value)[0])
+          newData.data.push(Object.values(value)[0])
+        })
+        return newData
+      },
+
+      // 环状图分离key和value
+      getCarData(data) {
+        let newData = []
+        data.forEach(value => {
+          newData.push({
+            name: Object.keys(value)[0],
+            value: Object.values(value)[0]
+          })
+        })
+        return newData
+      },
+
+      // 横向双柱图分离key和value
+      getXAxisData(data) {
+        let newData = []
+        data.forEach(value => {
+
+        })
+        return newData
+      },
+
       // 数据处理+绘制
       drawCharts(data) {
+        // 第一屏
+        // 智能柜总台数
+        this.yAxisCharts(
+          this.getKeyValue(data.ark),
+          'ark',
+          ['rgba(255,198,0,0.9)', 'rgba(255,248,169,0.9)']
+        )
+
+        // 使用用户数和注册用户数
+
+        // 中间的汽车气泡
+
+        // 服务项目排名
+        this.projectRanking = this.getCarData(data.projectTypeSumList)
+        this.ringCharts(
+          this.getCarData(data.projectTypeSumList),
+          'projectTypeSumList'
+        )
+
+        // 智能柜总覆盖用户数
+        this.yAxisCharts(
+          this.getKeyValue(data.user),
+          'user',
+          ['rgba(48,84,203,0.8)', 'rgba(59,70,150,0.8)']
+        )
+        // 业务量和业绩量
+        this.xAxisCharts(
+          this.getXAxisData(data.storeRanking),
+          'storeRanking',
+          ['rgba(48,84,203,0.8)', 'rgba(59,70,150,0.8)']
+        )
+
+        // 第二屏
+        // 平均消费数
+        this.averageConsumption = data.averageConsumption
+        // 增长量和总注册数
+
+        // 平均使用频次
+        this.yAxisCharts(
+          this.getKeyValue(data.averageUsage),
+          'averageUsage',
+          ['rgba(243,152,24,1)', 'rgba(197,199,83,1)']
+        )
+        // 新用户转化率
+
+        // 总转化率
+
+        // 第三屏
+        // 汽车品牌top10
+        // topCarBrandByUser
+
+        // 消费次数
+        this.yAxisCharts(
+          this.getKeyValue(data.topCarBrandByConsumptionTime),
+          'topCarBrandByConsumptionTime',
+          ['rgba(255,157,2,0.9)', 'rgba(204,206,82,0.9)']
+        )
+        // 消费金额
+        this.yAxisCharts(
+          this.getKeyValue(data.topCarBrandByAverageConsumption),
+          'topCarBrandByAverageConsumption',
+          ['rgba(76,116,183,0.9)', 'rgba(255,255,255,0.9)']
+        )
+        // 车龄统计
+
+        // 增长率
+        // topCarBrandByUserIncrement
+
+        // 复购率
+        this.yAxisCharts(
+          this.getKeyValue(data.topCarBrandByRepeatUse),
+          'topCarBrandByRepeatUse',
+          ['rgba(24,182,106,0.8)', 'rgba(34,174,220,0.8)']
+        )
+        // 车辆价值
 
       },
 
       // 折线图+环状图
-      categoryCharts(data, id) {
+      lineCharts(data, id) {
         let option = {
           title: {
             text: '某楼盘销售情况',
@@ -365,30 +655,64 @@
       },
 
       // 单列柱状图
-      yAxisCharts(data, id) {
+      yAxisCharts(data, id, color) {
+        const myChart = echarts.init(document.getElementById(id));
+        myChart.showLoading();
         let option = {
-          legend: {},
-          tooltip: {},
-          dataset: {
-            source: [
-              ['product', '用户数', '注册数'],
-              ['1', 43.3, 85.8],
-              ['2', 83.1, 73.4],
-              ['3', 86.4, 65.2],
-              ['4', 72.4, 53.9]
-            ]
+          xAxis: {
+            type: 'category',
+            data: data.time,
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            axisLabel: {
+              fontSize: 9,
+              interval: 0
+            }
           },
-          xAxis: {type: 'category'},
-          yAxis: {},
-          // Declare several bar series, each will be mapped
-          // to a column of dataset.source by default.
-          series: [
-            {type: 'bar'},
-            {type: 'bar'}
-          ]
+          yAxis: {
+            type: 'value',
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            axisLabel: {
+              fontSize: 9,
+              interval: 0
+            }
+          },
+          series: [{
+            data: data.data,
+            type: 'bar',
+            barWidth: '11',
+            // showBackground: true,
+            // backgroundStyle: {
+            //   color: 'rgba(220, 220, 220, 0.8)'
+            // },
+            itemStyle: {
+              normal: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0,
+                  color: color[0]
+                }, {
+                  offset: 1,
+                  color: color[1]
+                }]),
+              }
+            },
+          }]
         };
-        const myChart = echarts.init(document.getElementById('main'));
         myChart.setOption(option)
+        myChart.hideLoading();
       },
 
       // 双列柱状图
@@ -414,7 +738,7 @@
             {type: 'bar'}
           ]
         };
-        const myChart = echarts.init(document.getElementById('main'));
+        const myChart = echarts.init(document.getElementById(id));
         myChart.setOption(option)
       },
 
@@ -450,14 +774,14 @@
             }
           ]
         };
-        const myChart = echarts.init(document.getElementById('main'));
+        const myChart = echarts.init(document.getElementById(id));
         myChart.setOption(option)
       },
 
       // 重叠柱状图
-      overlappingCharts(data, id) {
+      overLappingCharts(data, id) {
         let option = {}
-        const myChart = echarts.init(document.getElementById('main'));
+        const myChart = echarts.init(document.getElementById(id));
         myChart.setOption(option)
       },
 
@@ -479,24 +803,57 @@
             }
           ]
         };
-        const myChart = echarts.init(document.getElementById('main'));
+        const myChart = echarts.init(document.getElementById(id));
         myChart.setOption(option)
       },
 
       // 环状图
       ringCharts(data, id) {
-        let option = {}
-        const myChart = echarts.init(document.getElementById('main'));
+        let option = {
+          legend: {
+            orient: 'vertical',
+            bottom: 0,
+            data: data,
+            textStyle: {
+              color: 'white',
+              fontSize: 13
+            },
+            formatter: function (n) {
+              let val = data.filter(value => value.name === n)
+              return n + '      ' + val[0].value
+            }
+          },
+          series: {
+            name: '访问来源',
+            type: 'pie',
+            left: '15',
+            top: '-165',
+            radius: ['25%', '40%'],
+            color: ['#2cb2ca', '#8aa771', '#b83fbc', '#ca942c', '#2c3eca', '#9ac534'],
+            label: {
+              formatter: '{b}\n{d}%',
+              color: 'white',
+            },
+            labelLine: {
+              normal: {
+                show: true
+              }
+            },
+            data: data
+          }
+        }
+        const myChart = echarts.init(document.getElementById(id));
         myChart.setOption(option)
       },
 
     },
     mounted: function () {
-      this.categoryCharts()
-      this.openWs()
+      this.drawCharts(JSON.parse(JSON.stringify(this.testInfo)))
+      // this.openWs()
+
     },
     destroyed: function () {
-      ws.close()
+      // ws.close()
     }
 
   }
@@ -516,20 +873,22 @@
     background-size: 100% 100%;
     height: 310px;
     width: 460px;
-    .show-card-title {
-      font-weight: 600;
-      font-size: 16px;
-      color: #0ef7ff;
-      width: 210px;
-      text-align: center;
-      line-height: 40px;
-      display: inline-block;
-    }
     .show-card-echarts {
       height: 270px;
       width: 460px;
       margin: 0;
+      padding-left: 10px;
     }
+  }
+
+  .show-card-title {
+    font-weight: 600;
+    font-size: 16px;
+    color: #0ef7ff;
+    width: 210px;
+    text-align: center;
+    line-height: 40px;
+    display: inline-block;
   }
 
   .show-title {
@@ -685,9 +1044,13 @@
         top: -30px;
         font-weight: 600;
       }
+      #projectTypeSumList {
+        height: 350px;
+        width: 220px;
+      }
     }
     .show-first-right {
-      div {
+      > div {
         margin-top: 55px;
       }
     }
@@ -696,6 +1059,12 @@
       background-size: 100% 100%;
       height: 510px;
       width: 460px;
+      .show-card-echarts{
+        height: 274px;
+        width: 419px;
+        margin: 0;
+        padding-left: 10px;
+      }
     }
   }
 
