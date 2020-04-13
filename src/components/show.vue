@@ -31,7 +31,7 @@
             </div>
             <div class="show-card">
               <span class="show-card-title">使用用户数和注册用户数</span>
-              <div class="show-card-echarts"></div>
+              <div class="show-card-echarts" id="activeUser"></div>
             </div>
           </div>
 
@@ -56,8 +56,13 @@
             <div class="show-card-large">
               <span class="show-card-title">业务量和业绩量</span>
               <!--前三名-->
-              <div>
-
+              <div class="top-store">
+                <div v-for="(item,index) in topStore" class="top-store-box">
+                  <img src="./../assets/show/bg_08.png" class="top-store-icon" alt="">
+                  <span class="top-store-index">NO.{{index+1}}</span>
+                  <img src="./../assets/show/logo2.png" class="store-img" alt="">
+                  <span>{{item.name}}</span>
+                </div>
               </div>
               <div class="show-card-echarts" id="storeRanking"></div>
             </div>
@@ -77,7 +82,7 @@
             <div class="show-second-top">
               <div class="show-card">
                 <span class="show-card-title">用户数增长量和总注册用户数</span>
-                <div class="show-card-echarts"></div>
+                <div class="show-card-echarts" id="userSum"></div>
               </div>
               <div class="show-card">
                 <span class="show-card-title">用户平均使用频次</span>
@@ -89,11 +94,11 @@
               <div class="show-second-bottom-box">
                 <div class="show-second-bottom-card">
                   <span class="show-card-title">新用户转化率</span>
-                  <div class="show-card-echarts"></div>
+                  <div class="show-card-echarts" id="newUserLeft"></div>
                 </div>
                 <div class="show-second-bottom-card">
                   <span class="show-card-title">总用户转化率</span>
-                  <div class="show-card-echarts"></div>
+                  <div class="show-card-echarts" id="newUserRight"></div>
                 </div>
               </div>
             </div>
@@ -108,11 +113,12 @@
             <span class="show-third-left-title">汽车品牌top10</span>
             <!--列表-->
             <div class="show-third-left-box">
-              <div class="show-third-left-item">
-                <img src="" alt="">
-                <span>福特</span>
-                <div></div>
-                <span>14%</span>
+              <div class="show-third-left-item" v-for="(item,index) in topCarBrandByUser">
+                <img :src="'/static/images/'+item.name+'.jpg'" alt="">
+                <!--<img src="/static/images/" alt="">-->
+                <span>{{item.name}}</span>
+                <div :style="'width:'+ 150*(item.value/topCarBrandByUser[0].value) +'px'"></div>
+                <span>{{item.value*100}}%</span>
               </div>
             </div>
 
@@ -151,11 +157,6 @@
 
   </div>
 </template>
-<!--topCarBrand-->
-<!--3.智能柜使用用户数: activeUser-->
-<!--4.门店排名:      storeRanking-->
-<!--8.新增注册用户数,总注册数与用户转化率: newUser-->
-
 <!--用户中汽车品牌top10   topCarBrandByUser-->
 
 <script>
@@ -170,6 +171,19 @@
         projectRanking: [],
         loading: true,
         averageConsumption: '',
+        topStore: [
+          {
+            img: '',
+            name: 'a'
+          }, {
+            img: '',
+            name: 'b'
+          }, {
+            img: '',
+            name: 'c'
+          }
+        ],
+        topCarBrandByUser: [],
         testInfo: {
           "projectTypeSumList": [
             {
@@ -238,15 +252,7 @@
               "福特": 11.0
             }, {
               "奔驰": 3.58
-            }, {
-              "本田": 1.0
-            }, {
-              "日产": 1.0
-            }, {
-              "雷克萨斯": 1.0
-            }, {
-              "英菲尼迪": 1.0
-            }],
+            },],//按消费金额排名
           "topCarBrandByUserIncrement": [
             {
               "长安轻型车": 1.0
@@ -260,7 +266,7 @@
               "雪佛兰": 0.13
             }, {
               "宝马": 0.09
-            },],
+            },],//用户增长率
           "topCarBrandByConsumptionTime": [
             {
               "别克": 221
@@ -274,16 +280,16 @@
               "沃尔沃": 11
             }, {
               "宝骏": 9
-            },],
+            },],//消费次数
           "newUser": [
             {
               "date": "2019-05",
-              "activeCount": 0,
-              "totalConversion": 0.02,
-              "invertionRate": 0.0,
-              "sum": 65,
-              "effectiveAddition": 1,
-              "addition": 26
+              "activeCount": 0,//左边的使用一次
+              "totalConversion": 0.02,//右边的折线图
+              "invertionRate": 0.0,//左边的折线图
+              "sum": 65,//右边的总关注用户
+              "effectiveAddition": 1,//右边的使用一次
+              "addition": 26//左边的新增注册用户
             }, {
               "date": "2019-06",
               "activeCount": 0,
@@ -386,7 +392,7 @@
               "别克": 0.06
             }, {
               "本田": 0.05
-            },],
+            },],//前十名
           "averageUsage": [
             {
               "2019-05": 0.0
@@ -453,7 +459,7 @@
               "安凯客车": 0.4
             }, {
               "起亚": 0.33
-            },],
+            },],//复购率
           "user": [
             {
               "2019-05": 1935
@@ -487,7 +493,7 @@
       // ws
       openWs() {
         let loadingInstance = Loading.service({fullscreen: true, background: 'rgba(0,0,0,0.8)'});
-        ws = new WebSocket("ws://192.168.0.163:8081/test")
+        ws = new WebSocket("ws://106.14.75.69:8081/screen")
         ws.onopen = (evt) => {
           console.log("连接成功", evt)
         };
@@ -506,10 +512,10 @@
 
       // 单柱图分离key和value
       getKeyValue(data) {
-        let newData = {time: [], data: []}
+        let newData = {name: [], value: []}
         data.forEach(value => {
-          newData.time.push(Object.keys(value)[0])
-          newData.data.push(Object.values(value)[0])
+          newData.name.push(Object.keys(value)[0])
+          newData.value.push(Object.values(value)[0])
         })
         return newData
       },
@@ -526,18 +532,12 @@
         return newData
       },
 
-      // 横向双柱图分离key和value
-      getXAxisData(data) {
-        let newData = []
-        data.forEach(value => {
-
-        })
-        return newData
-      },
-
       // 数据处理+绘制
-      drawCharts(data) {
+      drawCharts(wsData) {
+        let data = wsData
+
         // 第一屏
+
         // 智能柜总台数
         this.yAxisCharts(
           this.getKeyValue(data.ark),
@@ -546,11 +546,18 @@
         )
 
         // 使用用户数和注册用户数
+        this.doubleYAxisCharts(
+          this.getKeyValue(data.activeUser),
+          data.newUser.map(item => {
+            return item.sum
+          }),
+          'activeUser'
+        )
 
         // 中间的汽车气泡
+        this.projectRanking = this.getCarData(data.projectTypeSumList)
 
         // 服务项目排名
-        this.projectRanking = this.getCarData(data.projectTypeSumList)
         this.ringCharts(
           this.getCarData(data.projectTypeSumList),
           'projectTypeSumList'
@@ -562,17 +569,42 @@
           'user',
           ['rgba(48,84,203,0.8)', 'rgba(59,70,150,0.8)']
         )
+
+        // top3门店
+        this.topStore=data.storeRanking.slice(0,4)
+
         // 业务量和业绩量
         this.xAxisCharts(
-          this.getXAxisData(data.storeRanking),
+          data.storeRanking.map(item => {
+            return item.name
+          }),
+          data.storeRanking.map(item => {
+            return item.count
+          }),
+          data.storeRanking.map(item => {
+            return item.sum
+          }),
           'storeRanking',
-          ['rgba(48,84,203,0.8)', 'rgba(59,70,150,0.8)']
         )
 
         // 第二屏
+
         // 平均消费数
         this.averageConsumption = data.averageConsumption
+
         // 增长量和总注册数
+        this.lineBarCharts(
+          data.newUser.map(item => {
+            return item.date
+          }),
+          data.newUser.map(item => {
+            return item.addition
+          }),
+          data.newUser.map(item => {
+            return item.sum
+          }),
+          'userSum'
+        )
 
         // 平均使用频次
         this.yAxisCharts(
@@ -580,13 +612,37 @@
           'averageUsage',
           ['rgba(243,152,24,1)', 'rgba(197,199,83,1)']
         )
+
         // 新用户转化率
+        this.lineCharts(
+          data.newUser[11].activeCount,
+          data.newUser[11].addition,
+          data.newUser.map(item => {
+            return item.date
+          }),
+          data.newUser.map(item => {
+            return item.invertionRate
+          }),
+          'newUserLeft'
+        )
 
         // 总转化率
+        this.lineCharts(
+          data.newUser[11].effectiveAddition,
+          data.newUser[11].sum,
+          data.newUser.map(item => {
+            return item.date
+          }),
+          data.newUser.map(item => {
+            return item.totalConversion
+          }),
+          'newUserRight'
+        )
 
         // 第三屏
+
         // 汽车品牌top10
-        // topCarBrandByUser
+        this.topCarBrandByUser = this.getCarData(data.topCarBrandByUser)
 
         // 消费次数
         this.yAxisCharts(
@@ -594,16 +650,29 @@
           'topCarBrandByConsumptionTime',
           ['rgba(255,157,2,0.9)', 'rgba(204,206,82,0.9)']
         )
+
         // 消费金额
         this.yAxisCharts(
           this.getKeyValue(data.topCarBrandByAverageConsumption),
           'topCarBrandByAverageConsumption',
           ['rgba(76,116,183,0.9)', 'rgba(255,255,255,0.9)']
         )
+
         // 车龄统计
 
         // 增长率
-        // topCarBrandByUserIncrement
+        this.overLappingCharts(
+          data.topCarBrandByUserIncrement.map(item => {
+            return item.brand
+          }),
+          data.topCarBrandByUserIncrement.map(item => {
+            return item.count
+          }),
+          data.topCarBrandByUserIncrement.map(item => {
+            return item.sum
+          }),
+          'topCarBrandByUserIncrement'
+        )
 
         // 复购率
         this.yAxisCharts(
@@ -611,46 +680,192 @@
           'topCarBrandByRepeatUse',
           ['rgba(24,182,106,0.8)', 'rgba(34,174,220,0.8)']
         )
+
         // 车辆价值
 
       },
 
       // 折线图+环状图
-      lineCharts(data, id) {
-        let option = {
-          title: {
-            text: '某楼盘销售情况',
-            subtext: '纯属虚构'
-          },
-          tooltip: {
-            trigger: 'axis'
-          },
-          legend: {
-            data: ['意向', '预购', '成交']
-          },
-          toolbox: {
-            show: true,
-            feature: {
-              magicType: {show: true, type: ['stack', 'tiled']},
-              saveAsImage: {show: true}
+      lineCharts(oneTime, sum, date, value, id) {
+        let myData = {}
+        switch (id) {
+          case 'newUserLeft':
+            myData = {
+              bgColor: 'rgba(63,255,126,0.3)',
+              lineColor: 'rgba(63,255,126,0.5)',
+              pie: ['#1a90a1', '#55b1f5'],
+              legend: ['新增注册用户', '使用一次']
             }
-          },
+            break
+          case 'newUserRight':
+            myData = {
+              bgColor: 'rgba(255,174,0,0.3)',
+              lineColor: 'rgba(255,174,0,1)',
+              pie: ['#7f2197', '#ffaf31'],
+              legend: ['总注册关注用户', '使用一次']
+            }
+            break
+        }
+        let option = {
           xAxis: {
             type: 'category',
-            boundaryGap: false,
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+            data: date,
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            axisLabel: {
+              fontSize: 9,
+              interval: 0
+            }
           },
           yAxis: {
-            type: 'value'
+            type: 'value',
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            axisLabel: {
+              fontSize: 9,
+              interval: 0
+            }
           },
-          series: [{
-            name: '成交',
-            type: 'line',
-            smooth: true,
-            data: [10, 12, 21, 54, 260, 830, 710]
-          }]
-        }
-        const myChart = echarts.init(document.getElementById('main'));
+          grid: {
+            top: 160,
+            bottom: 20
+          },
+          series: [
+            {
+              data: value,
+              type: 'line',
+              symbol: 'none',
+              lineStyle: {
+                color: myData.lineColor
+              },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0.7,
+                  color: myData.bgColor
+                }, {
+                  offset: 1,
+                  color: 'transparent'
+                }])
+              },
+            },
+            {
+              type: 'pie',
+              top: '-220',
+              radius: ['18%', '28%'],
+              color: myData.pie,
+              label: {
+                formatter: '{b}\n{c}',
+                color: 'white',
+              },
+              labelLine: {
+                normal: {
+                  show: true
+                }
+              },
+              data: [
+                {value: sum, name: myData.legend[0]},
+                {value: oneTime, name: myData.legend[1]}
+              ]
+            }
+          ]
+        };
+
+        const myChart = echarts.init(document.getElementById(id));
+        myChart.setOption(option)
+      },
+
+      // 折线图+柱状图
+      lineBarCharts(date, addition, sum, id) {
+        let option = {
+          xAxis: {
+            type: 'category',
+            data: date,
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            axisLabel: {
+              fontSize: 9,
+              interval: 0
+            }
+          },
+          legend: {
+            data: ['注册用户数', '新增用户数'],
+            top:10,
+            textStyle:{
+              color:'white'
+            }
+          },
+          yAxis: {
+            type: 'value',
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            axisLabel: {
+              fontSize: 9,
+              interval: 0
+            }
+          },
+          series: [
+            {
+              data: addition,
+              name:'新增用户数',
+              type: 'line',
+              symbol: 'none',
+              lineStyle: {
+                color: 'rgba(255,217,6,0.8)'
+              },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                  offset: 0.7,
+                  color: 'rgba(255,216,0,0.8)'
+                }, {
+                  offset: 1,
+                  color: 'transparent'
+                }])
+              },
+            },
+            {
+              data: sum,
+              name:'注册用户数',
+              type: 'bar',
+              barWidth: '11',
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(53,86,165,0.8)'
+                  }, {
+                    offset: 1,
+                    color: 'rgba(55,189,228,0.8)'
+                  }]),
+                }
+              },
+            }
+          ]
+        };
+        const myChart = echarts.init(document.getElementById(id));
         myChart.setOption(option)
       },
 
@@ -661,7 +876,7 @@
         let option = {
           xAxis: {
             type: 'category',
-            data: data.time,
+            data: data.name,
             axisTick: {
               show: false
             },
@@ -691,13 +906,9 @@
             }
           },
           series: [{
-            data: data.data,
+            data: data.value,
             type: 'bar',
             barWidth: '11',
-            // showBackground: true,
-            // backgroundStyle: {
-            //   color: 'rgba(220, 220, 220, 0.8)'
-            // },
             itemStyle: {
               normal: {
                 color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -716,61 +927,76 @@
       },
 
       // 双列柱状图
-      doubleYAxisCharts(data, id) {
+      doubleYAxisCharts(data, user, id) {
         let option = {
-          legend: {},
-          tooltip: {},
-          dataset: {
-            source: [
-              ['product', '用户数', '注册数'],
-              ['1', 43.3, 85.8],
-              ['2', 83.1, 73.4],
-              ['3', 86.4, 65.2],
-              ['4', 72.4, 53.9]
-            ]
-          },
-          xAxis: {type: 'category'},
-          yAxis: {},
-          // Declare several bar series, each will be mapped
-          // to a column of dataset.source by default.
-          series: [
-            {type: 'bar'},
-            {type: 'bar'}
-          ]
-        };
-        const myChart = echarts.init(document.getElementById(id));
-        myChart.setOption(option)
-      },
-
-      // 横向柱状图
-      xAxisCharts(data, id) {
-        let option = {
-          dataset: {
-            source: [
-              ['score', 'amount', 'product'],
-              [89.3, 58212, 'Matcha Latte'],
-              [57.1, 78254, 'Milk Tea'],
-              [74.4, 41032, 'Cheese Cocoa'],
-              [50.1, 12755, 'Cheese Brownie'],
-              [89.7, 20145, 'Matcha Cocoa'],
-              [68.1, 79146, 'Tea'],
-              [19.6, 91852, 'Orange Juice'],
-              [10.6, 101852, 'Lemon Juice'],
-              [32.7, 20112, 'Walnut Brownie']
-            ]
-          },
-          grid: {containLabel: true},
-          xAxis: {},
-          yAxis: {type: 'category'},
+          xAxis: [
+            {
+              type: 'category',
+              axisTick: {
+                show: false
+              },
+              axisLine: {
+                lineStyle: {
+                  color: 'white'
+                }
+              },
+              axisLabel: {
+                fontSize: 9,
+                interval: 0
+              },
+              data: data.name
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value',
+              axisTick: {
+                show: false
+              },
+              axisLine: {
+                lineStyle: {
+                  color: 'white'
+                }
+              },
+              axisLabel: {
+                fontSize: 9,
+                interval: 0
+              }
+            }
+          ],
           series: [
             {
               type: 'bar',
-              encode: {
-                // Map the "amount" column to X axis.
-                x: 'amount',
-                // Map the "product" column to Y axis
-                y: 'product'
-              }
+              barWidth: '11',
+              barGap: '0',
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(47,85,251,0.9)'
+                  }, {
+                    offset: 1,
+                    color: 'rgba(0,210,255,0.9)'
+                  }]),
+                }
+              },
+              data: data.value
+            },
+            {
+              type: 'bar',
+              barWidth: '11',
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(225,118,0,0.9)'
+                  }, {
+                    offset: 1,
+                    color: 'rgba(224,226,83,0.9)'
+                  }]),
+                }
+              },
+              data: user
             }
           ]
         };
@@ -778,9 +1004,155 @@
         myChart.setOption(option)
       },
 
-      // 重叠柱状图
-      overLappingCharts(data, id) {
-        let option = {}
+      // 横向重叠柱状图
+      xAxisCharts(name, count, sum, id) {
+        let option = {
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '5%',
+            top: '5%',
+            containLabel: true,
+            color: 'rgba(14,247,255,0.3)'
+          },
+          xAxis: {
+            type: 'value',
+            axisLine: {
+              lineStyle: {
+                color: 'rgba(14,247,255,0.3)'
+              }
+            },
+            axisTick: {
+              show: false
+            },
+            axisLabel: {
+              show: false
+            },
+            splitLine: {
+              show: true,
+              lineStyle: {
+                color: ['rgba(14,247,255,0.3)'],
+                width: 1,
+                type: 'solid'
+              }
+            }
+          },
+          yAxis: {
+            type: 'category',
+            axisLine: {
+              lineStyle: {
+                color: 'rgba(14,247,255,0.3)'
+              }
+            },
+            axisLabel: {
+              fontSize: 9,
+              interval: 0,
+              color: 'white'
+            },
+            axisTick: {
+              show: false
+            },
+            data: name
+          },
+          series: [
+            {
+              type: 'bar',
+              barWidth: '11',
+              barGap: '-100%',
+              itemStyle: {
+                normal: {
+                  color: 'rgba(14,247,255,0.2)',
+                  barBorderRadius: [0,7,7,0],
+                  borderColor: 'rgba(14,247,255,0.6)',
+                },
+              },
+              data: sum
+            },
+            {
+              type: 'bar',
+              barWidth: '11',
+              itemStyle: {
+                normal: {
+                  color: '#ff8f0c',
+                  barBorderRadius: [0,7,7,0]
+                }
+              },
+              data: count
+            }
+          ]
+        };
+        const myChart = echarts.init(document.getElementById(id));
+        myChart.setOption(option)
+      },
+
+      // 纵向重叠柱状图
+      overLappingCharts(brand, count, sum, id) {
+        let option = {
+          xAxis: {
+            type: 'category',
+            data: brand,
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            axisLabel: {
+              fontSize: 9,
+              interval: 0
+            }
+          },
+          yAxis: {
+            type: 'value',
+            axisTick: {
+              show: false
+            },
+            axisLine: {
+              lineStyle: {
+                color: 'white'
+              }
+            },
+            axisLabel: {
+              fontSize: 9,
+              interval: 0
+            }
+          },
+          series: [
+            {
+              type: 'bar',
+              barWidth: '11',
+              barGap: '-100%',
+              barBorderRadius: [0, 10, 10, 0],
+              borderColor: 'rgba(14,247,255,0.3)',
+              borderWidth: 3,
+              borderType: 'solid',
+              itemStyle: {
+                normal: {
+                  color: 'white',
+                }
+              },
+              data: sum
+            },
+            {
+              type: 'bar',
+              barWidth: '11',
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: 'rgba(225,118,0,0.9)'
+                  }, {
+                    offset: 1,
+                    color: 'rgba(224,226,83,0.9)'
+                  }]),
+                }
+              },
+              data: count
+            }
+          ]
+        };
         const myChart = echarts.init(document.getElementById(id));
         myChart.setOption(option)
       },
@@ -824,7 +1196,6 @@
             }
           },
           series: {
-            name: '访问来源',
             type: 'pie',
             left: '15',
             top: '-165',
@@ -853,7 +1224,7 @@
 
     },
     destroyed: function () {
-      // ws.close()
+      ws.close()
     }
 
   }
@@ -1059,11 +1430,62 @@
       background-size: 100% 100%;
       height: 510px;
       width: 460px;
-      .show-card-echarts{
-        height: 274px;
-        width: 419px;
-        margin: 0;
-        padding-left: 10px;
+      position: relative;
+      .top-store {
+        height: 175px;
+        padding: 0 75px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 10px;
+        .top-store-box {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          color: white;
+          position: relative;
+          font-size: 14px;
+          .top-store-index {
+            position: absolute;
+            left: 50px;
+            top: 13px;
+          }
+          .top-store-icon {
+            position: relative;
+            top: 10px;
+          }
+          .store-img {
+            height: 75px;
+            width: 75px;
+            border-radius: 75px;
+          }
+        }
+        > :nth-child(1) {
+          align-self: flex-start;
+          order: 2;
+          .store-img {
+            border: 2px #ffda0c dotted;
+          }
+        }
+        > :nth-child(2) {
+          order: 1;
+          .store-img {
+            border: 2px white dotted;
+          }
+        }
+        > :nth-child(3) {
+          order: 3;
+          .store-img {
+            border: 2px #ff9000 dotted;
+          }
+        }
+
+      }
+      .show-card-echarts {
+        height: 280px;
+        width: 460px;
+        position: absolute;
+        bottom: 0;
       }
     }
   }
@@ -1124,6 +1546,15 @@
           height: 408px;
           width: 540px;
           padding-top: 25px;
+          position: relative;
+          div {
+            height: 372px;
+            width: 443px;
+            position: absolute;
+            transform: translateX(-50%);
+            left: 50%;
+            top: 35px;
+          }
         }
       }
     }
@@ -1153,6 +1584,15 @@
         height: 700px;
         margin-top: 13px;
         margin-bottom: 10px;
+        >:nth-child(1) div{
+          background-image: linear-gradient(to right, #e86c11 , #cf2c1b);
+        }
+        >:nth-child(2) div{
+          background-image: linear-gradient(to right, #e86c11 , #cf2c1b);
+        }
+        >:nth-child(3) div{
+          background-image: linear-gradient(to right, #e86c11 , #cf2c1b);
+        }
       }
       .show-third-left-item {
         height: 70px;
@@ -1164,9 +1604,14 @@
         margin: 0 12px;
         img {
           width: 50px;
+          height: 50px;
+        }
+        div{
+          height: 14px;
+          background-image: linear-gradient(to right, #119ae8 , #0c5fbd);
         }
         span {
-          margin-right: 13px;
+          margin:0 10px;
         }
       }
     }
