@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 import topBar from './../src/components/topBar.vue'
 import bottomBar from './../src/components/bottomBar.vue'
 import {Cascader, Carousel, CarouselItem,} from 'element-ui'

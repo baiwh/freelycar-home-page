@@ -3,12 +3,12 @@
 
     <!--标题-->
     <div class="show-title">
-      <span>气温5-14°C 晴</span>
+      <span>气温 {{weather}}</span>
       <div>
         <img class="show-title-logo" src="./../assets/show/logo2.png" alt="">
         <img class="show-title-text" src="./../assets/show/text.png" alt="">
       </div>
-      <span>2020-3-29 11:23</span>
+      <span>{{time}}</span>
     </div>
 
     <!--下拉框-->
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <el-carousel height="980px" :interval="30000000">
+    <el-carousel height="980px" :interval="10000">
 
       <!--第一屏-->
       <el-carousel-item>
@@ -58,7 +58,7 @@
               <!--前三名-->
               <div class="top-store">
                 <div v-for="(item,index) in topStore" class="top-store-box">
-                  <img src="./../assets/show/bg_08.png" class="top-store-icon" alt="">
+                  <img :src="'/static/no'+(index+1)+'.png'" class="top-store-icon" alt="">
                   <span class="top-store-index">NO.{{index+1}}</span>
                   <img src="./../assets/show/logo2.png" class="store-img" alt="">
                   <span>{{item.name}}</span>
@@ -157,11 +157,11 @@
 
   </div>
 </template>
-<!--用户中汽车品牌top10   topCarBrandByUser-->
 
 <script>
   const echarts = require('echarts')
   import {Loading} from 'element-ui'
+  import axios from 'axios'
 
   let ws = {}
   export default {
@@ -171,329 +171,18 @@
         projectRanking: [],
         loading: true,
         averageConsumption: '',
-        topStore: [
-          {
-            img: '',
-            name: 'a'
-          }, {
-            img: '',
-            name: 'b'
-          }, {
-            img: '',
-            name: 'c'
-          }
-        ],
+        time: '',
+        topStore: [],
+        weather: '',
         topCarBrandByUser: [],
-        testInfo: {
-          "projectTypeSumList": [
-            {
-              "美容": 396
-            }, {
-              "测试": 244
-            }, {
-              "保养": 234
-            }, {
-              "汽车检测": 209
-            }, {
-              "汽车精修": 183
-            }, {
-              "维修": 1
-            }],
-          "activeUser": [
-            {
-              "2019-05": 0
-            }, {
-              "2019-06": 0
-            }, {
-              "2019-07": 0
-            }, {
-              "2019-08": 17
-            }, {
-              "2019-09": 15
-            }, {
-              "2019-10": 7
-            }, {
-              "2019-11": 21
-            }, {
-              "2019-12": 61
-            }, {
-              "2020-01": 4
-            }, {
-              "2020-02": 2
-            }, {
-              "2020-03": 6
-            }, {
-              "2020-04": 0
-            }],
-          "storeRanking": [
-            {
-              "count": 282,
-              "name": "徐庄研发三区店",
-              "sum": 8704.10
-            }, {
-              "count": 195,
-              "name": "青创演示门店",
-              "sum": 480.72
-            }, {
-              "count": 78,
-              "name": "紫金嘉悦",
-              "sum": 6418.0
-            }],
-          "topCarBrandByAverageConsumption": [
-            {
-              "别克": 448.81
-            }, {
-              "奥迪": 227.08
-            }, {
-              "宝骏": 42.52
-            }, {
-              "宝马": 34.61
-            }, {
-              "福特": 11.0
-            }, {
-              "奔驰": 3.58
-            },],//按消费金额排名
-          "topCarBrandByUserIncrement": [
-            {
-              "长安轻型车": 1.0
-            }, {
-              "马自达": 0.25
-            }, {
-              "宝骏": 0.2
-            }, {
-              "ALPINA": 0.14
-            }, {
-              "雪佛兰": 0.13
-            }, {
-              "宝马": 0.09
-            },],//用户增长率
-          "topCarBrandByConsumptionTime": [
-            {
-              "别克": 221
-            }, {
-              "奥迪": 159
-            }, {
-              "宝马": 14
-            }, {
-              "奔驰": 13
-            }, {
-              "沃尔沃": 11
-            }, {
-              "宝骏": 9
-            },],//消费次数
-          "newUser": [
-            {
-              "date": "2019-05",
-              "activeCount": 0,//左边的使用一次
-              "totalConversion": 0.02,//右边的折线图
-              "invertionRate": 0.0,//左边的折线图
-              "sum": 65,//右边的总关注用户
-              "effectiveAddition": 1,//右边的使用一次
-              "addition": 26//左边的新增注册用户
-            }, {
-              "date": "2019-06",
-              "activeCount": 0,
-              "totalConversion": 0.01,
-              "invertionRate": 0.0,
-              "sum": 73,
-              "effectiveAddition": 1,
-              "addition": 8
-            }, {
-              "date": "2019-07",
-              "activeCount": 0,
-              "totalConversion": 0.01,
-              "invertionRate": 0.0,
-              "sum": 92,
-              "effectiveAddition": 1,
-              "addition": 19
-            }, {
-              "date": "2019-08",
-              "activeCount": 3,
-              "totalConversion": 0.04,
-              "invertionRate": 0.18,
-              "sum": 109,
-              "effectiveAddition": 4,
-              "addition": 17
-            }, {
-              "date": "2019-09",
-              "activeCount": 7,
-              "totalConversion": 0.08,
-              "invertionRate": 0.26,
-              "sum": 136,
-              "effectiveAddition": 11,
-              "addition": 27
-            }, {
-              "date": "2019-10",
-              "activeCount": 2,
-              "totalConversion": 0.09,
-              "invertionRate": 0.15,
-              "sum": 149,
-              "effectiveAddition": 13,
-              "addition": 13
-            }, {
-              "date": "2019-11",
-              "activeCount": 7,
-              "totalConversion": 0.12,
-              "invertionRate": 0.58,
-              "sum": 161,
-              "effectiveAddition": 20,
-              "addition": 12
-            }, {
-              "date": "2019-12",
-              "activeCount": 54,
-              "totalConversion": 0.27,
-              "invertionRate": 0.48,
-              "sum": 274,
-              "effectiveAddition": 74,
-              "addition": 113
-            }, {
-              "date": "2020-01",
-              "activeCount": 1,
-              "totalConversion": 0.26,
-              "invertionRate": 0.06,
-              "sum": 292,
-              "effectiveAddition": 75,
-              "addition": 18
-            }, {
-              "date": "2020-02",
-              "activeCount": 0,
-              "totalConversion": 0.25,
-              "invertionRate": 0.0,
-              "sum": 299,
-              "effectiveAddition": 75,
-              "addition": 7
-            }, {
-              "date": "2020-03",
-              "activeCount": 6,
-              "totalConversion": 0.26,
-              "invertionRate": 0.43,
-              "sum": 313,
-              "effectiveAddition": 81,
-              "addition": 14
-            }, {
-              "date": "2020-04",
-              "activeCount": 0,
-              "totalConversion": 0.26,
-              "invertionRate": 0.0,
-              "sum": 313,
-              "effectiveAddition": 81,
-              "addition": 0
-            }],
-          "topCarBrandByUser": [
-            {
-              "奥迪": 0.12
-            }, {
-              "宝马": 0.09
-            }, {
-              "奔驰": 0.09
-            }, {
-              "大众": 0.08
-            }, {
-              "别克": 0.06
-            }, {
-              "本田": 0.05
-            },],//前十名
-          "averageUsage": [
-            {
-              "2019-05": 0.0
-            }, {
-              "2019-06": 0.0
-            }, {
-              "2019-07": 0.0
-            }, {
-              "2019-08": 6.47
-            }, {
-              "2019-09": 8.93
-            }, {
-              "2019-10": 10.86
-            }, {
-              "2019-11": 5.86
-            }, {
-              "2019-12": 1.51
-            }, {
-              "2020-01": 2.25
-            }, {
-              "2020-02": 1.0
-            }, {
-              "2020-03": 1.5
-            }, {
-              "2020-04": 0.0
-            }],
-          "averageConsumption": 13.13,
-          "ark": [
-            {
-              "2019-05": 3
-            }, {
-              "2019-06": 3
-            }, {
-              "2019-07": 3
-            }, {
-              "2019-08": 8
-            }, {
-              "2019-09": 8
-            }, {
-              "2019-10": 8
-            }, {
-              "2019-11": 8
-            }, {
-              "2019-12": 8
-            }, {
-              "2020-01": 10
-            }, {
-              "2020-02": 10
-            }, {
-              "2020-03": 15
-            }, {
-              "2020-04": 15
-            }],
-          "topCarBrandByRepeatUse": [
-            {
-              "AC Schnitzer": 0.5
-            }, {
-              "雷克萨斯": 0.5
-            }, {
-              "阿尔法·罗密欧": 0.43
-            }, {
-              "宝骏": 0.4
-            }, {
-              "安凯客车": 0.4
-            }, {
-              "起亚": 0.33
-            },],//复购率
-          "user": [
-            {
-              "2019-05": 1935
-            }, {
-              "2019-06": 1935
-            }, {
-              "2019-07": 1935
-            }, {
-              "2019-08": 5749
-            }, {
-              "2019-09": 5749
-            }, {
-              "2019-10": 5749
-            }, {
-              "2019-11": 5749
-            }, {
-              "2019-12": 5749
-            }, {
-              "2020-01": 6950
-            }, {
-              "2020-02": 6950
-            }, {
-              "2020-03": 10218
-            }, {
-              "2020-04": 10218
-            }]
-        }
+        testInfo: {}
       }
     },
     methods: {
       // ws
       openWs() {
         let loadingInstance = Loading.service({fullscreen: true, background: 'rgba(0,0,0,0.8)'});
-        ws = new WebSocket("ws://106.14.75.69:8081/screen")
+        ws = new WebSocket("wss://106.14.75.69:8081/screen")
         ws.onopen = (evt) => {
           console.log("连接成功", evt)
         };
@@ -571,7 +260,7 @@
         )
 
         // top3门店
-        this.topStore=data.storeRanking.slice(0,4)
+        this.topStore = data.storeRanking.slice(0, 4)
 
         // 业务量和业绩量
         this.xAxisCharts(
@@ -807,9 +496,9 @@
           },
           legend: {
             data: ['注册用户数', '新增用户数'],
-            top:10,
-            textStyle:{
-              color:'white'
+            top: 10,
+            textStyle: {
+              color: 'white'
             }
           },
           yAxis: {
@@ -830,7 +519,7 @@
           series: [
             {
               data: addition,
-              name:'新增用户数',
+              name: '新增用户数',
               type: 'line',
               symbol: 'none',
               lineStyle: {
@@ -848,7 +537,7 @@
             },
             {
               data: sum,
-              name:'注册用户数',
+              name: '注册用户数',
               type: 'bar',
               barWidth: '11',
               itemStyle: {
@@ -1062,7 +751,7 @@
               itemStyle: {
                 normal: {
                   color: 'rgba(14,247,255,0.2)',
-                  barBorderRadius: [0,7,7,0],
+                  barBorderRadius: [0, 7, 7, 0],
                   borderColor: 'rgba(14,247,255,0.6)',
                 },
               },
@@ -1074,7 +763,7 @@
               itemStyle: {
                 normal: {
                   color: '#ff8f0c',
-                  barBorderRadius: [0,7,7,0]
+                  barBorderRadius: [0, 7, 7, 0]
                 }
               },
               data: count
@@ -1217,16 +906,110 @@
         myChart.setOption(option)
       },
 
+      // 获取时间
+      getTime() {
+        let date = new Date()
+        let time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+        this.time = time
+      },
+
+      // 获取天气
+      getWeather() {
+        axios.get('/weatherApi/v2.5/xl5eYnP5hxiEtuTy/118.78,32.07/weather.json')
+          .then(response => {
+            let skycon = response.data.result.daily.skycon[0].value
+            let temperature = response.data.result.daily.temperature[0]
+            let skycomText = ''
+            switch (skycon) {
+              case 'CLEAR_DAY':
+                skycomText = '晴（白天）'
+                break
+              case 'CLEAR_NIGHT':
+                skycomText = '晴（夜间）'
+                break
+              case 'PARTLY_CLOUDY_DAY':
+                skycomText = '多云（白天）'
+                break
+              case 'PARTLY_CLOUDY_NIGHT':
+                skycomText = '多云（夜间）'
+                break
+              case 'CLOUDY':
+                skycomText = '阴'
+                break
+              case 'LIGHT_HAZE':
+                skycomText = '轻度雾霾'
+                break
+              case 'MODERATE_HAZE':
+                skycomText = '中度雾霾'
+                break
+              case 'HEAVY_HAZE':
+                skycomText = '重度雾霾'
+                break
+              case 'LIGHT_RAIN':
+                skycomText = '小雨'
+                break
+              case 'MODERATE_RAIN':
+                skycomText = '中雨'
+                break
+              case 'HEAVY_RAIN':
+                skycomText = '大雨'
+                break
+              case 'STORM_RAIN':
+                skycomText = '暴雨'
+                break
+              case 'FOG':
+                skycomText = '雾'
+                break
+              case 'LIGHT_SNOW':
+                skycomText = '小雪'
+                break
+              case 'MODERATE_SNOW':
+                skycomText = '中雪'
+                break
+              case 'HEAVY_SNOW':
+                skycomText = '大雪'
+                break
+              case 'STORM_SNOW':
+                skycomText = '暴雪'
+                break
+              case 'DUST':
+                skycomText = '浮尘'
+                break
+              case 'SAND':
+                skycomText = '沙尘'
+                break
+              case 'WIND':
+                skycomText = '大风'
+                break
+              case 'THUNDER_SHOWER':
+                skycomText = '雷阵雨'
+                break
+              case 'HAIL':
+                skycomText = '冰雹'
+                break
+              case 'SLEET':
+                skycomText = '雨夹雪'
+                break
+            }
+            this.weather = temperature.min + '℃-' + temperature.max + '℃ ' + skycomText
+          }, err => {
+            console.log(err)
+          })
+      }
+
     },
     mounted: function () {
-      this.drawCharts(JSON.parse(JSON.stringify(this.testInfo)))
-      // this.openWs()
-
+      // this.drawCharts(JSON.parse(JSON.stringify(this.testInfo)))
+      this.getTime()
+      this.getWeather()
+      setInterval(() => {
+        this.getTime()
+      }, 1000)
+      this.openWs()
     },
     destroyed: function () {
       ws.close()
     }
-
   }
 </script>
 
@@ -1447,7 +1230,7 @@
           font-size: 14px;
           .top-store-index {
             position: absolute;
-            left: 50px;
+            left: 60px;
             top: 13px;
           }
           .top-store-icon {
@@ -1584,14 +1367,14 @@
         height: 700px;
         margin-top: 13px;
         margin-bottom: 10px;
-        >:nth-child(1) div{
-          background-image: linear-gradient(to right, #e86c11 , #cf2c1b);
+        > :nth-child(1) div {
+          background-image: linear-gradient(to right, #e86c11, #cf2c1b);
         }
-        >:nth-child(2) div{
-          background-image: linear-gradient(to right, #e86c11 , #cf2c1b);
+        > :nth-child(2) div {
+          background-image: linear-gradient(to right, #e86c11, #cf2c1b);
         }
-        >:nth-child(3) div{
-          background-image: linear-gradient(to right, #e86c11 , #cf2c1b);
+        > :nth-child(3) div {
+          background-image: linear-gradient(to right, #e86c11, #cf2c1b);
         }
       }
       .show-third-left-item {
@@ -1606,12 +1389,12 @@
           width: 50px;
           height: 50px;
         }
-        div{
+        div {
           height: 14px;
-          background-image: linear-gradient(to right, #119ae8 , #0c5fbd);
+          background-image: linear-gradient(to right, #119ae8, #0c5fbd);
         }
         span {
-          margin:0 10px;
+          margin: 0 10px;
         }
       }
     }
