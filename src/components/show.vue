@@ -60,7 +60,7 @@
                 <div v-for="(item,index) in topStore" class="top-store-box">
                   <img :src="'/static/no'+(index+1)+'.png'" class="top-store-icon" alt="">
                   <span class="top-store-index">NO.{{index+1}}</span>
-                  <img src="./../assets/show/logo2.png" class="store-img" alt="">
+                  <img :src="'/static/no'+(index+1)+'img.png'" class="store-img" alt="">
                   <span>{{item.name}}</span>
                 </div>
               </div>
@@ -999,13 +999,13 @@
 
     },
     mounted: function () {
-      // this.drawCharts(JSON.parse(JSON.stringify(this.testInfo)))
+      this.drawCharts(JSON.parse(JSON.stringify(this.testInfo)))
       this.getTime()
       this.getWeather()
       setInterval(() => {
         this.getTime()
       }, 1000)
-      this.openWs()
+      // this.openWs()
     },
     destroyed: function () {
       ws.close()
