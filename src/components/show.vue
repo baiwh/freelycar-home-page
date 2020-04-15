@@ -60,7 +60,7 @@
                 <div v-for="(item,index) in topStore" class="top-store-box">
                   <img :src="'/static/no'+(index+1)+'.png'" class="top-store-icon" alt="">
                   <span class="top-store-index">NO.{{index+1}}</span>
-                  <img :src="'/static/no'+(index+1)+'img.png'" class="store-img" alt="">
+                  <img :src="'/static/no'+(index+1)+'img.jpg'" class="store-img" alt="">
                   <span>{{item.name}}</span>
                 </div>
               </div>
@@ -134,7 +134,7 @@
             </div>
             <div class="show-card">
               <span class="show-card-title">车龄统计</span>
-              <div class="show-card-echarts"></div>
+              <div class="show-card-echarts" id="carAge"></div>
             </div>
             <div class="show-card">
               <span class="show-card-title">用户增长率排名</span>
@@ -146,7 +146,7 @@
             </div>
             <div class="show-card">
               <span class="show-card-title">用户车辆价值</span>
-              <div class="show-card-echarts"></div>
+              <div class="show-card-echarts" id="carPrice"></div>
             </div>
           </div>
         </div>
@@ -175,14 +175,28 @@
         topStore: [],
         weather: '',
         topCarBrandByUser: [],
-        testInfo: {}
+        testInfo: {},
+        carAge: [
+          {name: '2年内', value: 27.4},
+          {name: '2-5年内', value: 23.3},
+          {name: '5-8年内', value: 32.2},
+          {name: '8-10年内', value: 11.6},
+          {name: '10年以上', value: 5.5},
+        ],
+        carPrice: [
+          {name:'15万以内',value:14.5},
+          {name:'15-25万',value:24.2},
+          {name:'25-35万',value:29.9},
+          {name:'35-50万',value:20.4},
+          {name:'50万以上',value:11.0},
+        ]
       }
     },
     methods: {
       // ws
       openWs() {
         let loadingInstance = Loading.service({fullscreen: true, background: 'rgba(0,0,0,0.8)'});
-        ws = new WebSocket("wss://106.14.75.69:8081/screen")
+        ws = new WebSocket("wss://www.freelycar.com/api/wss")
         ws.onopen = (evt) => {
           console.log("连接成功", evt)
         };
@@ -348,6 +362,11 @@
         )
 
         // 车龄统计
+        this.pieCharts(
+          this.carAge,
+          ['#1dbd92', '#105593', '#305fb3', '#625e87', '#31bfcc'],
+          'carAge'
+        )
 
         // 增长率
         this.overLappingCharts(
@@ -371,6 +390,11 @@
         )
 
         // 车辆价值
+        this.pieCharts(
+          this.carPrice,
+          ['#ed6a1b','#b38330','#edc668','#fff603','#bd9d1d'],
+          'carPrice'
+        )
 
       },
 
@@ -847,20 +871,35 @@
       },
 
       // 饼状图
-      pieCharts(data, id) {
+      pieCharts(data, color, id) {
+        let name = data.map(item=>item.name)
         let option = {
+          legend: {
+            orient: 'vertical',
+            bottom: 0,
+            data: name,
+            right: '10',
+            top:'center',
+            textStyle: {
+              color: 'white',
+              fontSize: 13
+            },
+            formatter: function (n) {
+              let val = data.filter(value => value.name === n)
+              return n + '      ' + val[0].value
+            }
+          },
           series: [
             {
-              name: '访问来源',
               type: 'pie',
-              radius: '55%',
-              data: [
-                {value: 235, name: '视频广告'},
-                {value: 274, name: '联盟广告'},
-                {value: 310, name: '邮件营销'},
-                {value: 335, name: '直接访问'},
-                {value: 400, name: '搜索引擎'}
-              ]
+              radius: '60px',
+              center: ['140px', '50%'],
+              data: data,
+              color: color,
+              label: {
+                formatter: '{b}\n{d}%',
+                color: 'white',
+              },
             }
           ]
         };
@@ -999,13 +1038,13 @@
 
     },
     mounted: function () {
-      this.drawCharts(JSON.parse(JSON.stringify(this.testInfo)))
+      // this.drawCharts(JSON.parse(JSON.stringify(this.testInfo)))
       this.getTime()
       this.getWeather()
       setInterval(() => {
         this.getTime()
       }, 1000)
-      // this.openWs()
+      this.openWs()
     },
     destroyed: function () {
       ws.close()
@@ -1046,7 +1085,7 @@
   }
 
   .show-title {
-    font-size: 25px;
+    font-size: 20px;
     color: #e2fcff;
     display: flex;
     justify-content: space-between;
@@ -1061,6 +1100,12 @@
       width: 350px;
       height: 40px;
       margin-right: 165px;
+    }
+    span {
+      width: 350px;
+    }
+    :last-child {
+      text-align: right;
     }
   }
 
