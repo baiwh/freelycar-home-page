@@ -954,10 +954,11 @@
 
       // 获取天气
       getWeather() {
-        axios.get('/weatherApi/v2.5/xl5eYnP5hxiEtuTy/118.78,32.07/weather.json')
+        axios.get('https://www.freelycar.com/api/screen/weather')
           .then(response => {
-            let skycon = response.data.result.daily.skycon[0].value
-            let temperature = response.data.result.daily.temperature[0]
+            console.log(response)
+            let skycon = response.data.skycon[0].value
+            let temperature = response.data.temperature[0]
             let skycomText = ''
             switch (skycon) {
               case 'CLEAR_DAY':
@@ -1038,7 +1039,6 @@
 
     },
     mounted: function () {
-      // this.drawCharts(JSON.parse(JSON.stringify(this.testInfo)))
       this.getTime()
       this.getWeather()
       setInterval(() => {
