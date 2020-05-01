@@ -59,7 +59,7 @@
               <div class="top-store">
                 <div v-for="(item,index) in topStore" class="top-store-box">
                   <img :src="'/static/no'+(index+1)+'.png'" class="top-store-icon" alt="">
-                  <span class="top-store-index">NO.{{index+1}}</span>
+                  <span class="top-store-index">NO.{{index + 1}}</span>
                   <img :src="'/static/no'+(index+1)+'img.jpg'" class="store-img" alt="">
                   <span>{{item.name}}</span>
                 </div>
@@ -118,7 +118,7 @@
                 <!--<img src="/static/images/" alt="">-->
                 <span>{{item.name}}</span>
                 <div :style="'width:'+ 150*(item.value/topCarBrandByUser[0].value) +'px'"></div>
-                <span>{{item.value*100}}%</span>
+                <span>{{item.value * 100}}%</span>
               </div>
             </div>
 
@@ -184,11 +184,11 @@
           {name: '10年以上', value: 5.5},
         ],
         carPrice: [
-          {name:'15万以内',value:14.5},
-          {name:'15-25万',value:24.2},
-          {name:'25-35万',value:29.9},
-          {name:'35-50万',value:20.4},
-          {name:'50万以上',value:11.0},
+          {name: '15万以内', value: 14.5},
+          {name: '15-25万', value: 24.2},
+          {name: '25-35万', value: 29.9},
+          {name: '35-50万', value: 20.4},
+          {name: '50万以上', value: 11.0},
         ]
       }
     },
@@ -392,7 +392,7 @@
         // 车辆价值
         this.pieCharts(
           this.carPrice,
-          ['#ed6a1b','#b38330','#edc668','#fff603','#bd9d1d'],
+          ['#ed6a1b', '#b38330', '#edc668', '#fff603', '#bd9d1d'],
           'carPrice'
         )
 
@@ -476,7 +476,7 @@
             {
               type: 'pie',
               top: '-220',
-              radius: ['18%', '28%'],
+              radius: ['15%', '23%'],
               color: myData.pie,
               label: {
                 formatter: '{b}\n{c}',
@@ -872,14 +872,14 @@
 
       // 饼状图
       pieCharts(data, color, id) {
-        let name = data.map(item=>item.name)
+        let name = data.map(item => item.name)
         let option = {
           legend: {
             orient: 'vertical',
             bottom: 0,
             data: name,
             right: '10',
-            top:'center',
+            top: 'center',
             textStyle: {
               color: 'white',
               fontSize: 13
@@ -950,6 +950,9 @@
         let date = new Date()
         let time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
         this.time = time
+        if (date.getDate() == 0 && date.getHours() == 0 && date.getMinutes() == 0) {
+          this.getWeather()
+        }
       },
 
       // 获取天气
