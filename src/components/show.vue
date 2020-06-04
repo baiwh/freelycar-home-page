@@ -475,8 +475,8 @@
             },
             {
               type: 'pie',
-              top: '-220',
-              radius: ['15%', '23%'],
+              top: '-200',
+              radius: ['14%', '21%'],
               color: myData.pie,
               label: {
                 formatter: '{b}\n{c}',
