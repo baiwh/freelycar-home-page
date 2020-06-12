@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="call-us">
       <div @click="chooseNavTab(item.value)"
-           v-for="(item,index) in list">
+           v-for="(item,index) in list" :key="index">
         <button>{{item.value}}</button>
         <span v-show="item.value!=='申请合作'"> | </span>
       </div>

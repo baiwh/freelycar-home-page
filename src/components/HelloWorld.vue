@@ -68,7 +68,7 @@
       <b></b>
       <div>
         <img v-for="(item,index) in msg"
-             :src="['/static/friendlinks/'+item+'.png']" alt="">
+             :src="['./static/friendlinks/'+item+'.png']" alt="" :key="index">
       </div>
     </div>
 

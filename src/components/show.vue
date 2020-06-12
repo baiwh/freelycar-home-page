@@ -30,7 +30,7 @@
               <div class="show-card-echarts" id="ark"></div>
             </div>
             <div class="show-card">
-              <span class="show-card-title">使用用户数和注册用户数</span>
+              <span class="show-card-title">注册用户数和使用用户数</span>
               <div class="show-card-echarts" id="activeUser"></div>
             </div>
           </div>
@@ -57,10 +57,10 @@
               <span class="show-card-title">业务量和业绩量</span>
               <!--前三名-->
               <div class="top-store">
-                <div v-for="(item,index) in topStore" class="top-store-box">
-                  <img :src="'/static/no'+(index+1)+'.png'" class="top-store-icon" alt="">
+                <div v-for="(item,index) in topStore" class="top-store-box" :key='index'>
+                  <img :src="'./static/no'+(index+1)+'.png'" class="top-store-icon" alt="">
                   <span class="top-store-index">NO.{{index + 1}}</span>
-                  <img :src="'/static/no'+(index+1)+'img.jpg'" class="store-img" alt="">
+                  <img :src="'./static/no'+(index+1)+'img.jpg'" class="store-img" alt="">
                   <span>{{item.name}}</span>
                 </div>
               </div>
@@ -113,12 +113,12 @@
             <span class="show-third-left-title">汽车品牌top10</span>
             <!--列表-->
             <div class="show-third-left-box">
-              <div class="show-third-left-item" v-for="(item,index) in topCarBrandByUser">
-                <img :src="'/static/images/'+item.name+'.jpg'" alt="">
+              <div class="show-third-left-item" v-for="(item,index) in topCarBrandByUser" :key="index">
+                <img :src="'./static/images/'+item.name+'.jpg'" alt="">
                 <!--<img src="/static/images/" alt="">-->
                 <span>{{item.name}}</span>
                 <div :style="'width:'+ 150*(item.value/topCarBrandByUser[0].value) +'px'"></div>
-                <span>{{item.value * 100}}%</span>
+                <span>{{parseInt(item.value*100)}}%</span>
               </div>
             </div>
 
@@ -245,7 +245,9 @@
         this.yAxisCharts(
           this.getKeyValue(data.ark),
           'ark',
-          ['rgba(255,198,0,0.9)', 'rgba(255,248,169,0.9)']
+          ['rgba(255,198,0,0.9)', 'rgba(255,248,169,0.9)'],
+          ['智能柜总台数'],
+          ['单位：个','月份']
         )
 
         // 使用用户数和注册用户数
@@ -254,7 +256,10 @@
           data.newUser.map(item => {
             return item.sum
           }),
-          'activeUser'
+          'activeUser',
+          ['注册用户数','使用用户数'],
+          //添加xy轴的单位说明
+          ['单位：个','月份']
         )
 
         // 中间的汽车气泡
@@ -270,11 +275,13 @@
         this.yAxisCharts(
           this.getKeyValue(data.user),
           'user',
-          ['rgba(48,84,203,0.8)', 'rgba(59,70,150,0.8)']
+          ['rgba(48,84,203,0.8)', 'rgba(59,70,150,0.8)'],
+          ['智能柜总覆盖用户数'],
+          ['单位：个','月份']
         )
 
         // top3门店
-        this.topStore = data.storeRanking.slice(0, 4)
+        this.topStore = data.storeRanking.slice(0, 3)
 
         // 业务量和业绩量
         this.xAxisCharts(
@@ -288,6 +295,7 @@
             return item.sum
           }),
           'storeRanking',
+          ['业绩量','业务量']
         )
 
         // 第二屏
@@ -306,14 +314,19 @@
           data.newUser.map(item => {
             return item.sum
           }),
-          'userSum'
+          'userSum',
+          ['注册用户数','新增用户数'],
+          ['单位：个','月份']
+
         )
 
         // 平均使用频次
         this.yAxisCharts(
           this.getKeyValue(data.averageUsage),
           'averageUsage',
-          ['rgba(243,152,24,1)', 'rgba(197,199,83,1)']
+          ['rgba(243,152,24,1)', 'rgba(197,199,83,1)'],
+          ['平均使用频次'],
+          ['次数','月份']
         )
 
         // 新用户转化率
@@ -326,7 +339,8 @@
           data.newUser.map(item => {
             return item.invertionRate
           }),
-          'newUserLeft'
+          'newUserLeft',
+          ['转化率','月份']
         )
 
         // 总转化率
@@ -339,7 +353,8 @@
           data.newUser.map(item => {
             return item.totalConversion
           }),
-          'newUserRight'
+          'newUserRight',
+          ['转化率','月份']
         )
 
         // 第三屏
@@ -351,14 +366,18 @@
         this.yAxisCharts(
           this.getKeyValue(data.topCarBrandByConsumptionTime),
           'topCarBrandByConsumptionTime',
-          ['rgba(255,157,2,0.9)', 'rgba(204,206,82,0.9)']
+          ['rgba(255,157,2,0.9)', 'rgba(204,206,82,0.9)'],
+          ['消费次数'],
+          ['单位：个','品牌']
         )
 
         // 消费金额
         this.yAxisCharts(
           this.getKeyValue(data.topCarBrandByAverageConsumption),
           'topCarBrandByAverageConsumption',
-          ['rgba(76,116,183,0.9)', 'rgba(255,255,255,0.9)']
+          ['rgba(76,116,183,0.9)', 'rgba(255,255,255,0.9)'],
+          ['消费金额'],
+          ['单位：元','品牌']
         )
 
         // 车龄统计
@@ -379,14 +398,18 @@
           data.topCarBrandByUserIncrement.map(item => {
             return item.sum
           }),
-          'topCarBrandByUserIncrement'
+          'topCarBrandByUserIncrement',
+          ['增长率','增长数'],
+          ['增长率/增长数','月份']
         )
 
         // 复购率
         this.yAxisCharts(
           this.getKeyValue(data.topCarBrandByRepeatUse),
           'topCarBrandByRepeatUse',
-          ['rgba(24,182,106,0.8)', 'rgba(34,174,220,0.8)']
+          ['rgba(24,182,106,0.8)', 'rgba(34,174,220,0.8)'],
+          ['复购率'],
+          ['复购率','品牌']
         )
 
         // 车辆价值
@@ -399,7 +422,7 @@
       },
 
       // 折线图+环状图
-      lineCharts(oneTime, sum, date, value, id) {
+      lineCharts(oneTime, sum, date, value, id,explain) {
         let myData = {}
         switch (id) {
           case 'newUserLeft':
@@ -434,7 +457,8 @@
             axisLabel: {
               fontSize: 9,
               interval: 0
-            }
+            },
+            name:explain[1]
           },
           yAxis: {
             type: 'value',
@@ -449,7 +473,8 @@
             axisLabel: {
               fontSize: 9,
               interval: 0
-            }
+            },
+            name:explain[0]
           },
           grid: {
             top: 160,
@@ -500,7 +525,7 @@
       },
 
       // 折线图+柱状图
-      lineBarCharts(date, addition, sum, id) {
+      lineBarCharts(date, addition, sum, id,legends,explain) {
         let option = {
           xAxis: {
             type: 'category',
@@ -516,15 +541,17 @@
             axisLabel: {
               fontSize: 9,
               interval: 0
-            }
+            },
+            name:explain[1]
           },
           legend: {
-            data: ['注册用户数', '新增用户数'],
-            top: 10,
+            data: legends,
+            y:'20px',
             textStyle: {
               color: 'white'
             }
           },
+          tooltip:{},
           yAxis: {
             type: 'value',
             axisTick: {
@@ -538,12 +565,13 @@
             axisLabel: {
               fontSize: 9,
               interval: 0
-            }
+            },
+            name:explain[0]
           },
           series: [
             {
               data: addition,
-              name: '新增用户数',
+              name: legends[1],
               type: 'line',
               symbol: 'none',
               lineStyle: {
@@ -561,7 +589,7 @@
             },
             {
               data: sum,
-              name: '注册用户数',
+              name: legends[0],
               type: 'bar',
               barWidth: '11',
               itemStyle: {
@@ -583,7 +611,8 @@
       },
 
       // 单列柱状图
-      yAxisCharts(data, id, color) {
+      yAxisCharts(data, id, color,legends,explain) {
+        console.log(legends)
         const myChart = echarts.init(document.getElementById(id));
         myChart.showLoading();
         let option = {
@@ -601,7 +630,17 @@
             axisLabel: {
               fontSize: 9,
               interval: 0
-            }
+            },
+            name:explain[1]
+          },
+          tooltip:{show:true,confine:true},
+          legend:{
+            x:'260px',
+            y:'20px',
+            data:legends,
+            textStyle: {
+            color: 'white'
+          }
           },
           yAxis: {
             type: 'value',
@@ -616,9 +655,11 @@
             axisLabel: {
               fontSize: 9,
               interval: 0
-            }
+            },
+            name:explain[0]
           },
           series: [{
+            name:legends[0],
             data: data.value,
             type: 'bar',
             barWidth: '11',
@@ -640,7 +681,7 @@
       },
 
       // 双列柱状图
-      doubleYAxisCharts(data, user, id) {
+      doubleYAxisCharts(data, user, id,legends,explain) {
         let option = {
           xAxis: [
             {
@@ -657,9 +698,19 @@
                 fontSize: 9,
                 interval: 0
               },
-              data: data.name
+              data: data.name,
+              name:explain[1]
             }
           ],
+          legend:{
+            x:'260px',
+            y:'10px',
+            data:legends,
+            textStyle: {
+              color: 'white'
+            }
+          },
+          tooltip:{},
           yAxis: [
             {
               type: 'value',
@@ -674,11 +725,13 @@
               axisLabel: {
                 fontSize: 9,
                 interval: 0
-              }
+              },
+              name:explain[0]
             }
           ],
           series: [
             {
+              name:legends[0],
               type: 'bar',
               barWidth: '11',
               barGap: '0',
@@ -696,6 +749,7 @@
               data: data.value
             },
             {
+              name:legends[1],
               type: 'bar',
               barWidth: '11',
               itemStyle: {
@@ -718,7 +772,7 @@
       },
 
       // 横向重叠柱状图
-      xAxisCharts(name, count, sum, id) {
+      xAxisCharts(name, count, sum, id,legend) {
         let option = {
           grid: {
             left: '3%',
@@ -727,6 +781,12 @@
             top: '5%',
             containLabel: true,
             color: 'rgba(14,247,255,0.3)'
+          },
+          legend: {
+            data: legend,
+            textStyle: {
+              color: 'white'
+            }
           },
           xAxis: {
             type: 'value',
@@ -767,8 +827,10 @@
             },
             data: name
           },
+          tooltip:{},
           series: [
             {
+              name:legend[0],
               type: 'bar',
               barWidth: '11',
               barGap: '-100%',
@@ -779,9 +841,11 @@
                   borderColor: 'rgba(14,247,255,0.6)',
                 },
               },
-              data: sum
+              
+              data: sum,
             },
             {
+              name:legend[1],
               type: 'bar',
               barWidth: '11',
               itemStyle: {
@@ -799,7 +863,7 @@
       },
 
       // 纵向重叠柱状图
-      overLappingCharts(brand, count, sum, id) {
+      overLappingCharts(brand, count, sum, id,legends,explain) {
         let option = {
           xAxis: {
             type: 'category',
@@ -815,7 +879,8 @@
             axisLabel: {
               fontSize: 9,
               interval: 0
-            }
+            },
+            name:explain[1]
           },
           yAxis: {
             type: 'value',
@@ -830,10 +895,21 @@
             axisLabel: {
               fontSize: 9,
               interval: 0
+            },
+            name:explain[0]
+          },
+          legend:{
+            x:'260px',
+            y:'15px',
+            data:legends,
+            textStyle:{
+              color:'white'
             }
           },
+          tooltip:{},
           series: [
             {
+              name:legends[1],
               type: 'bar',
               barWidth: '11',
               barGap: '-100%',
@@ -849,6 +925,7 @@
               data: sum
             },
             {
+              name:legends[0],
               type: 'bar',
               barWidth: '11',
               itemStyle: {
@@ -1058,7 +1135,7 @@
 <style scoped lang="less">
   /*公共class*/
   .show {
-    background: url('/static/bg.png') no-repeat;
+    background: url('../../static/bg.png') no-repeat;
     background-size: 100% 100%;
     height: 1080px;
     width: 1920px;
@@ -1163,6 +1240,7 @@
       position: absolute;
       left: 340px;
       top: 150px;
+      z-index: -1;
       .show-first-car-item {
         height: 106px;
         width: 117px;

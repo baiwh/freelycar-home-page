@@ -8,7 +8,7 @@
       <button
         :class="[$route.name===item.value?'yellow':'white']"
         @click="chooseNavTab(item.linkTo)"
-        v-for="(item,index) in list">
+        v-for="(item,index) in list" :key="index">
         {{item.value}}
       </button>
       <router-link to="/contact">

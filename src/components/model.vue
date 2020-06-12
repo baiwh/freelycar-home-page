@@ -30,13 +30,13 @@
       <h1>战略合作规划</h1>
       <b></b>
       <div :class="[item.year==='2020'?'time-line border-dotted':'time-line border-solid']"
-           v-for="(item,index) in msg">
+           v-for="(item,index) in msg" :key="index">
         <img src="./../assets/blue-circle.png" alt="">
         <span class="year">{{item.year}}年</span>
         <h3>发展策略</h3>
         <p>{{item.title1}}</p>
         <h3>业务拓展</h3>
-        <p v-for="(items,indexs) in item.title2">{{items}}</p>
+        <p v-for="(items,indexs) in item.title2" :key="indexs">{{items}}</p>
         <h3>用户数量<span class="big">{{item.user}}</span>万</h3>
         <h3>智能钥匙柜<span class="big">{{item.ark}}</span>台</h3>
       </div>

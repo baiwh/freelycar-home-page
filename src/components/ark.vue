@@ -7,7 +7,7 @@
       <h2>小易智能柜服务 = 智能柜终端 + 线上信息平台</h2>
       <span>智能钥匙存取柜</span>
       <div>
-        <h6 v-for="(item,index) in msg">{{item}}</h6>
+        <h6 v-for="(item,index) in msg" :key="index">{{item}}</h6>
       </div>
       <b><img src="./../assets/arr.png" alt="">智能钥匙柜实拍图</b>
     </div>
