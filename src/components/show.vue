@@ -58,9 +58,9 @@
               <!--前三名-->
               <div class="top-store">
                 <div v-for="(item,index) in topStore" class="top-store-box" :key='index'>
-                  <img :src="'./static/no'+(index+1)+'.png'" class="top-store-icon" alt="">
+                  <img :src="'/static/no'+(index+1)+'.png'" class="top-store-icon" alt="">
                   <span class="top-store-index">NO.{{index + 1}}</span>
-                  <img :src="'./static/no'+(index+1)+'img.jpg'" class="store-img" alt="">
+                  <img :src="'/static/no'+(index+1)+'img.jpg'" class="store-img" alt="">
                   <span>{{item.name}}</span>
                 </div>
               </div>
@@ -114,7 +114,7 @@
             <!--列表-->
             <div class="show-third-left-box">
               <div class="show-third-left-item" v-for="(item,index) in topCarBrandByUser" :key="index">
-                <img :src="'./static/images/'+item.name+'.jpg'" alt="">
+                <img :src="'/static/images/'+item.name+'.jpg'" alt="">
                 <!--<img src="/static/images/" alt="">-->
                 <span>{{item.name}}</span>
                 <div :style="'width:'+ 150*(item.value/topCarBrandByUser[0].value) +'px'"></div>
@@ -1034,7 +1034,7 @@
 
       // 获取天气
       getWeather() {
-        axios.get('https://www.freelycar.com/api/screen/weather')
+        axios.get('http://www.freelycar.com/api/screen/weather')
           .then(response => {
             console.log(response)
             let skycon = response.data.skycon[0].value
@@ -1111,7 +1111,7 @@
                 skycomText = '雨夹雪'
                 break
             }
-            this.weather = temperature.min + '℃-' + temperature.max + '℃ ' + skycomText
+            this.weather = parseInt(temperature.min) + '℃-' + temperature.max + '℃ ' + skycomText
           }, err => {
             console.log(err)
           })

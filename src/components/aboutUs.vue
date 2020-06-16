@@ -29,7 +29,7 @@
       </div>
       <div class="zhengshu">
         <img v-for="(item,index) in msg"
-             :src="['./static/zhengshu/'+item+'.jpg']" alt="" :key="index">
+             :src="['/static/zhengshu/'+item+'.jpg']" alt="" :key="index">
       </div>
       <div class="shicha">
         <div>
