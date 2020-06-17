@@ -201,9 +201,13 @@
           console.log("连接成功", evt)
         };
         ws.onmessage = (evt) => {
-          console.log("收到：", JSON.parse(evt.data))
-          console.log("收到：", evt.data)
-          this.drawCharts(JSON.parse(evt.data))
+          console.log('evt-data',evt.data)
+          if(evt.data !=='连接成功建立'){
+            console.log("收到：", JSON.parse(evt.data))
+          // console.log("收到：", evt.data)
+            this.drawCharts(JSON.parse(evt.data))
+          }
+          
           loadingInstance.close();
         };
         ws.onerror = (evt) => {
@@ -1034,7 +1038,7 @@
 
       // 获取天气
       getWeather() {
-        axios.get('http://www.freelycar.com/api/screen/weather')
+        axios.get('https://www.freelycar.com/api/screen/weather')
           .then(response => {
             console.log(response)
             let skycon = response.data.skycon[0].value
@@ -1111,7 +1115,7 @@
                 skycomText = '雨夹雪'
                 break
             }
-            this.weather = parseInt(temperature.min) + '℃-' + temperature.max + '℃ ' + skycomText
+            this.weather = parseInt(temperature.min) + '℃-' + parseInt(temperature.max) + '℃ ' + skycomText
           }, err => {
             console.log(err)
           })
