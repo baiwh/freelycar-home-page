@@ -202,7 +202,7 @@
         };
         ws.onmessage = (evt) => {
           console.log('evt-data',evt.data)
-          if(evt.data !=='连接成功建立'){
+          if(evt.data !== '连接成功建立'){
             console.log("收到：", JSON.parse(evt.data))
           // console.log("收到：", evt.data)
             this.drawCharts(JSON.parse(evt.data))
