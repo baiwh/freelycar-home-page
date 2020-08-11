@@ -236,6 +236,8 @@
             value: Object.values(value)[0]
           })
         })
+        console.log('-------')
+        console.log(newData)
         return newData
       },
 
@@ -267,6 +269,8 @@
         )
 
         // 中间的汽车气泡
+        //项目取前六个
+        data.projectTypeSumList = data.projectTypeSumList.slice(0,6)
         this.projectRanking = this.getCarData(data.projectTypeSumList)
 
         // 服务项目排名
@@ -990,6 +994,8 @@
 
       // 环状图
       ringCharts(data, id) {
+        console.log('服务项目排名');
+        console.log(data)
         let option = {
           legend: {
             orient: 'vertical',
