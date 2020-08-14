@@ -288,7 +288,7 @@
           ['单位：个','月份']
         )
 
-        // top3门店
+        // top3网点
         this.topStore = data.storeRanking.slice(0, 3)
 
         // 业务量和业绩量
