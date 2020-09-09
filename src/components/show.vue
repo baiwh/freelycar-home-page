@@ -157,11 +157,11 @@
 
   </div>
 </template>
-
 <script>
   const echarts = require('echarts')
   import {Loading} from 'element-ui'
   import axios from 'axios'
+  import Rwebsocket from 'reconnecting-websocket';
 
   let ws = {}
   export default {
@@ -196,12 +196,12 @@
       // ws
       openWs() {
         let loadingInstance = Loading.service({fullscreen: true, background: 'rgba(0,0,0,0.8)'});
-        ws = new WebSocket("wss://www.freelycar.com/api/wss")
+        ws = new Rwebsocket("wss://www.freelycar.com/api/wss")
         ws.onopen = (evt) => {
           console.log("连接成功", evt)
         };
         ws.onmessage = (evt) => {
-          console.log('evt-data',evt.data)
+          console.log(evt.data)
           if(evt.data !== '连接成功建立'){
             console.log("收到：", JSON.parse(evt.data))
           // console.log("收到：", evt.data)
@@ -211,9 +211,8 @@
           loadingInstance.close();
         };
         ws.onerror = (evt) => {
-          alert("错误：" + (evt.data && evt.data !== undefined) ? evt.data : '网络连接出错')
+          alert('网络连接出错')
           ws.close()
-          this.openWs()
         };
       },
 
